@@ -1,3 +1,57 @@
-body {
-	background: gray;
+html {
+  height: 100%;
 }
+body {
+  min-height: 100%;
+  overflow-x:hidden;
+  background-image:url("../images/wow2.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+
+}
+
+img {
+	width: 200px;
+	height: 200px;
+
+}
+
+
+
+/*------ IMAGES ------------------------------------------------*/
+
+.work {
+  position: relative;
+  width: 200px;
+  margin: 20px 0 25px;
+  overflow: none;
+}
+
+.work:nth-child(even) {
+  margin-right: 40px;
+}
+
+.work img {
+  width: 100%;
+  border: 0 none;
+  opacity: 0.8;
+}
+
+.work h3 {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 0;
+  font-weight: 300;
+  line-height: 30px;
+  color: #fff;
+  text-align: center;
+  background: #4aaaa5;
+  border-bottom: 0;
+}
+
+/*------ END IMAGES ------------------------------------------------*/
