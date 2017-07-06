@@ -15,6 +15,26 @@ var rogueHealth = 100;
 
 
 
+//Create a class for all the character choices! 
+class charClass {
+	constructor(health, attackPower) {
+	this.health = health;
+	this.attackPower = attackPower;
+	}
+}
+
+
+//Create objects for each possible character selection
+var rogueClass = new charClass(rogueHealth, 50);
+var warriorClass = new charClass(warriorHealth, 50);
+var mageClass = new charClass(mageHealth, 50);
+var hunterClass = new charClass(hunterHealth, 50);
+
+
+
+
+
+
 $( "#attack" ).on("click", function() {
 	$("#gameText").text("Start the game!");
 
@@ -112,15 +132,13 @@ $( "#rogue" ).on("click", function() {
 //FUNCTION FOR CHOOSING ENEMY ------------------
 function chooseEnemy() {
 
-$("div").trigger('click');
-
-
 $( "#" + charList[0] ).on("click", function() {
 	jQuery("#" + charList[0]).detach().appendTo('#defenderArea');
 	charChosen = charList[0];
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
+	attack();
 	return;
 
 });
@@ -131,6 +149,7 @@ $( "#" + charList[1] ).on("click", function() {
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
+	attack();
 	return;
 
 
@@ -143,22 +162,32 @@ $( "#" + charList[2] ).on("click", function() {
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
+	attack();
 	return;
 
 });
 
-
-
-
-
 }
 
 
+function attack() {
+
+$("#attack").on("click", function() {
+
+	var enemyHP = "#" + charChosen + "HP";
+	var enemyClass = eval(charChosen + "Class");
+	var enemyAttackPower = enemyClass.attackPower;
+	var enemyHealth = enemyClass.health-10;
+	$("#gameText").text("You attached the enemy for 10!");
+	$(enemyHP).text(charChosen + "–" + enemyHealth);
+
+
+});
+
+}
+
 //Choosing enemy function is called inside chooseCharacter
 chooseCharacter();
-
-
-
 
 
 });
