@@ -13,7 +13,7 @@ var mageHealth = 80;
 var hunterHealth = 120;
 var rogueHealth = 100; 
 
-
+$('#classRow').append($('<img>',{id:'roge',src:'assets/images/warrior.jpg'}))
 
 //Create a class for all the character choices! 
 class charClass {
@@ -35,16 +35,6 @@ var hunterClass = new charClass(hunterHealth, 50);
 
 
 
-$( "#attack" ).on("click", function() {
-	$("#gameText").text("Start the game!");
-
-
-
-
-});
-
-
-
 function chooseCharacter() {
 
 // CLICKING ON Warrior
@@ -60,7 +50,6 @@ $( "#warrior" ).on("click", function() {
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
-	isIgnore = true;
 	chooseEnemy();
 	return;
 
@@ -79,7 +68,6 @@ $( "#mage" ).on("click", function() {
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
-	isIgnore = true;
 	chooseEnemy();
 	return;
 
@@ -98,7 +86,6 @@ $( "#hunter" ).on("click", function() {
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
-	isIgnore = true;
 	chooseEnemy();
 	return;
 
@@ -117,7 +104,6 @@ $( "#rogue" ).on("click", function() {
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
-	isIgnore = true;
 	chooseEnemy();
 	return;
 
@@ -177,17 +163,38 @@ $("#attack").on("click", function() {
 	var enemyHP = "#" + charChosen + "HP";
 	var enemyClass = eval(charChosen + "Class");
 	var enemyAttackPower = enemyClass.attackPower;
-	var enemyHealth = enemyClass.health-10;
-	$("#gameText").text("You attached the enemy for 10!");
-	$(enemyHP).text(charChosen + "–" + enemyHealth);
+	enemyClass.health-=10;
+	$("#gameText").text("You attaked the enemy for 10!");
+	$(enemyHP).text(charChosen + "–" + enemyClass.health);
+	if(enemyClass.health===0){
+		var defeatedEnemy = charChosen;
+		$("div").off("click");
+		$("#gameText").text("You defeat the " + defeatedEnemy + " class. Please choose another enemy to fight!");
+		$("#" + defeatedEnemy).remove();
+		if( $("#defenderArea").is(':empty') ) {
+			restartGame();
+		}
+		else{
 
+		chooseEnemy();
+
+		}
+		return;
+	}
 
 });
+
 
 }
 
 //Choosing enemy function is called inside chooseCharacter
 chooseCharacter();
+
+
+function restartGame() {
+	location.reload();
+
+}
 
 
 });
