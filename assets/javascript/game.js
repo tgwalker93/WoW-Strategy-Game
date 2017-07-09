@@ -16,6 +16,7 @@ var enemiesRemaining = 3;
 var gameActive = true;
 var lastEnemyLeft = false;
 var chooseEnemyCalled = false;
+var attackReady = false;
 
 $('#classRow').append($('<img>',{id:'roge',src:'assets/images/warrior.jpg'}))
 
@@ -194,8 +195,8 @@ $( "#" + charList[0] ).on("click", function() {
 	enemyChosen = charList[0];
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
-	$("div").off("click");
-	attack();
+	//$("div").off("click");
+	attackReady = true;
 	return;
 
 });
@@ -205,8 +206,8 @@ $( "#" + charList[1] ).on("click", function() {
 	enemyChosen = charList[1];
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
-	$("div").off("click");
-	attack();
+	//$("div").off("click");
+	attackReady = true;
 	return;
 
 
@@ -218,8 +219,8 @@ $( "#" + charList[2] ).on("click", function() {
 	enemyChosen = charList[2];
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
-	$("div").off("click");
-	attack();
+	//$("div").off("click");
+	attackReady = true;
 	return;
 
 });
@@ -231,7 +232,15 @@ $( "#" + charList[2] ).on("click", function() {
 }
 
 
-function attack() {
+
+
+
+
+
+
+
+
+
 
 $("#classStuff").html("Warrior Health " + warriorClass.health + "<br>" 
 	 + "Mage Health " + mageClass.health + "<br>" 
@@ -243,7 +252,10 @@ $("#classStuff").html("Warrior Health " + warriorClass.health + "<br>"
 
 
 
-$("#attack").unbind().click(function() {
+$("#attack").on("click", function() {
+
+if(attackReady===true) {
+	attackReady=false;
 
 	//your Character
 	var charHP = "#" + charChosen + "HP";
@@ -331,9 +343,14 @@ $("#attack").unbind().click(function() {
 
 
 //$("div").off("click");
+
+										}
 });
 
-}
+
+
+										
+
 
 
 //DEFINE ON KEYP UP OUTSIDE OF A FUNCTION; KEEP GLOBAL EVENT LISTENER RUNNING THROUGH OUT GAME
