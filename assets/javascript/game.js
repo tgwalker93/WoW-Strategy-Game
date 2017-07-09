@@ -14,8 +14,8 @@ var hunterHealth = 120;
 var rogueHealth = 100; 
 var enemiesRemaining = 3;
 var gameActive = true;
-var lastEnemyLeft = false;
-var chooseEnemyCalled = false;
+var attackReady = false;
+var spell = "attack";
 
 $('#classRow').append($('<img>',{id:'roge',src:'assets/images/warrior.jpg'}))
 
@@ -42,6 +42,59 @@ var rogueClass = {
 	mainAttack: 1,
 	attackPower: 2,
 
+	attack1: function(enemyChar) {
+
+		var spellName = "Backstab";
+		var successHit = Math.floor(Math.random() * 2) + 1
+		var enemyCharObj = eval(enemyChar+ "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+
+
+		if(successHit===1){
+
+			enemyCharObj.health -= 50
+			//$("#rogue").html("Rogue: " + rogueClass.health);
+			//$("#" + enemyChar + "HP").html(enemyChar + ": " + enemyCharObj.health);
+
+			$("#gameText").text("You successfully backedstabbed your enemy for 50 health! (50% chance)");
+			$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+
+
+			return;
+		}else {
+			$("#gameText").text("Your backstabbed attacked missed! (50% chance)");
+			return;
+		}
+
+
+	},
+	attack2: function(enemyChar) {
+		var spellName = "Poison Blade";
+
+		this.attackPower += 30;
+
+		$("#gameText").text("You increased your attack power by 30!");
+
+
+
+	},
+	attack3: function(enemyChar) {
+		var spellName = "Combo Strike"
+
+
+		$("#gameText").text("You increased your attack power by 15 and attack the enemy for 5!");
+		var enemyCharObj = eval(enemyChar+ "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+
+		//attack!
+		this.attackPower += 15;
+		enemyCharObj.health -= 5;
+
+		//UPDATE HP
+		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+		$("#rogueHP").html("Rogue: " + this.health);
+	},
+
 };
 
 
@@ -51,6 +104,60 @@ var mageClass = {
 	mainAttack: 1,
 	attackPower: 2,
 
+	attack1: function(enemyChar) {
+	var spellName = "Frostbolt";
+	$("#gameText").text("You reduced the enemy's health by 20 and reduced his attack power by 10!");
+	var enemyCharObj = eval(enemyChar + "Class");
+	var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+	enemyCharObj.health -= 20;
+	enemyCharObj.attackPower -=10;
+
+	$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+	},
+	attack2: function(enemyChar) {
+	var spellName = "Fire Nova";
+		hunterClass.health -= 15;
+		warriorClass.health -= 15;
+		rogueClass.health -= 15;
+		this.health -= 5;
+
+
+		var hunterHP = "#hunterHP";
+		var warriorHP = "#warriorHP";
+		var rogueHP = "#rogueHP";
+		var mageHP = "#mageHP";
+
+
+		//Health bars!!! 
+		$(hunterHP).html("Hunter: " + hunterClass.health);
+		$(mageHP).html("Mage: " + mageClass.health);
+		$(rogueHP).html("Rogue: " + rogueClass.health);
+		$(warriorHP).html("Warrior: " + warriorClass.health);
+
+
+
+
+		if(gameActive===true){
+		$("#gameText").html("You cleaved 15 damage to all enemies, but you lost 5 health!");
+
+		}
+
+
+	},
+	attack3: function(enemyChar) {
+		var spellName = "Arcane Brilliance";
+
+		if(gameActive===true){
+		$("#gameText").html("You increased your attack power by 10 and your health by 10");
+
+		}
+
+		this.attackPower += 10;
+		this.health += 10;
+
+		$("#mageHP").html("Mage: " + this.health);
+	},
+
 };
 
 
@@ -58,7 +165,73 @@ var mageClass = {
 var warriorClass = {
 	health: warriorHealth,
 	mainAttack: 1,
-	attackPower: 100,
+	attackPower: 2,
+
+	attack1: function(enemyChar) {
+		var spellName = "Cleave";
+		hunterClass.health -= 10;
+		mageClass.health -= 10;
+		rogueClass.health -= 10;
+
+
+		var hunterHP = "#hunterHP";
+		var mageHP = "#mageHP";
+		var rogueHP = "#rogueHP";
+
+
+
+		//Health bars!!! 
+		$(hunterHP).html("Hunter: " + hunterClass.health);
+		$(mageHP).html("Mage: " + mageClass.health);
+		$(rogueHP).html("Rogue: " + rogueClass.health);
+
+
+		if(gameActive===true){
+		$("#gameText").html("You cleaved 10 damage to all enemies!");
+
+		}
+	},
+	attack2: function(enemyChar) {
+		var spellName = "Enrage";
+		var randomSpell = Math.floor(Math.random() * 3) + 1
+		var enemyCharObj = eval(enemyChar+ "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+
+		if(gameActive===true){
+		$("#gameText").html("You attack your enemy for 30 but you lose 10 health!");
+
+		}
+		enemyCharObj.health -= 30;
+		this.health -=10;
+
+
+		//Update HP
+		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+		$("#warriorHP").html("Warrior: " + this.health);
+		
+
+
+	},
+	attack3: function(enemyChar) {
+		var spellName = "Shield Slam";
+		var enemyCharObj = eval(enemyChar+ "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+
+		if(gameActive===true){
+		$("#gameText").html("You attack your enemy for 10 and you gained 20 attack power!");
+
+		}	
+		enemyCharObj.health -= 10;
+		this.attackPower += 20;
+
+
+
+		//Update HP
+		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+		$("#warriorHP").html("Warrior: " + this.health);
+
+	},
+
 
 };
 
@@ -69,7 +242,53 @@ var hunterClass = {
 	mainAttack: 1,
 	attackPower: 2,
 
+	attack1: function(enemyChar) {
+		var spellName = "tranquilityShot";
+		$("#gameText").text("Attacked the enemy for 20 and healed for 10!");
+
+		var enemyCharObj = eval(enemyChar + "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+		enemyCharObj.health -= 10;
+		this.health += 10;
+		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+
+
+	},
+	attack2: function(enemyChar) {
+		var spellName = "Beast Enrage";
+		$("#gameText").text("You increased your attack power by 10, and attacked the player for 20!");
+		var enemyCharObj = eval(enemyChar + "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+		enemyCharObj.health -= 20;
+		this.attackPower += 10;
+		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+	},
+	
+	attack3: function(enemyChar) {
+		var spellName = "Arcane Shot";
+		var enemyCharObj = eval(enemyChar + "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+
+
+
+
+		enemyCharObj.health -= 25;
+		$("#gameText").text("You attack the enemy for 25!");
+
+		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+
+
+	},
+
 };
+
+
+
+
+
+
+
+
 
 
 $("#classStuff").html("Warrior Health " + warriorClass.health + "<br>" 
@@ -180,22 +399,13 @@ $("#classStuff").html("Warrior Health " + warriorClass.health + "<br>"
 	+ "<br>" + "Warrior Damage: " + warriorClass.mainAttack
 	+ "<br> inside chooseEnemy function");
 
-// if(charList.length<=1 && lastEnemyLeft===true){
-//  	jQuery("#" + charList[0]).detach().appendTo('#defenderArea');
-//  	enemyChosen = charList[0];
-//  	var index = charList.indexOf(enemyChosen);
-//  	charList.splice(index, 1);
-//  	$("div").off("click");
-//  	attack();
-//  	return;
-//  } else {
 $( "#" + charList[0] ).on("click", function() {
 	jQuery("#" + charList[0]).detach().appendTo('#defenderArea');
 	enemyChosen = charList[0];
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
+	attackReady = true;
 	$("div").off("click");
-	attack();
 	return;
 
 });
@@ -205,8 +415,8 @@ $( "#" + charList[1] ).on("click", function() {
 	enemyChosen = charList[1];
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
+	attackReady = true;
 	$("div").off("click");
-	attack();
 	return;
 
 
@@ -218,20 +428,26 @@ $( "#" + charList[2] ).on("click", function() {
 	enemyChosen = charList[2];
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
+	attackReady = true;
 	$("div").off("click");
-	attack();
 	return;
 
 });
 
 
 
-
-				// } //if else close
 }
 
 
-function attack() {
+
+
+
+
+
+
+
+
+
 
 $("#classStuff").html("Warrior Health " + warriorClass.health + "<br>" 
 	 + "Mage Health " + mageClass.health + "<br>" 
@@ -243,54 +459,83 @@ $("#classStuff").html("Warrior Health " + warriorClass.health + "<br>"
 
 
 
-$("#attack").unbind().click(function() {
 
-	//your Character
+function attack() {
+
+
+
+	//your Character, increasing attack power
 	var charHP = "#" + charChosen + "HP";
 	var charClass = eval(charChosen + "Class");
-	//var charSpells = eval((enemyChosen+"Spells"));
 	charClass.mainAttack+=charClass.attackPower;
 
 
 
-	//enemy
+	//enemy, increasing attack power
 	var enemyHP = "#" + enemyChosen + "HP";
 	var enemyClass = eval(enemyChosen + "Class");
-	//var enemySpells = eval((enemyChosen+"Spells"));
 	enemyClass.mainAttack+=enemyClass.attackPower;
 
 
 
 
 
-	//attack!
-	enemyClass.health -= charClass.mainAttack;
-	charClass.health -= enemyClass.mainAttack;
+	//ATTACK LOGIC!!
+	if(spell==="attack") {
+
+		enemyClass.health -= charClass.mainAttack;
+		charClass.health -= enemyClass.mainAttack;
+
+		if(gameActive===true){
+
+			$("#gameText").html("<div> You attaked the enemy for: " + charClass.mainAttack + " damage points! </div>"
+			 + "<div> The enemy attacked you for: " + enemyClass.mainAttack + " damage points! </div>");
+
+		}
+
+		var capitalizeEnemy = enemyChosen.substr(0,1).toUpperCase()+enemyChosen.substr(1);
+		var capitalizeChar = charChosen.substr(0,1).toUpperCase()+charChosen.substr(1);
+
+		//Health bars!!! 
+		$(enemyHP).html(capitalizeEnemy + ": " + enemyClass.health);
+		$(charHP).html(capitalizeChar + ": " + charClass.health);
+
+	}else if(spell==="attack1"){
+		var capitalizeChar = charChosen.substr(0,1).toUpperCase()+charChosen.substr(1);
+		charClass.health -= enemyClass.mainAttack;
+		$(charHP).html(capitalizeChar + ": " + charClass.health);
+
+		charClass.attack1(enemyChosen);
+		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + "damage points! </div>");
 
 
-	if(gameActive===true){
+	}else if(spell==="attack2"){
+		var capitalizeChar = charChosen.substr(0,1).toUpperCase()+charChosen.substr(1);
+		charClass.health -= enemyClass.mainAttack;
+		$(charHP).html(capitalizeChar + ": " + charClass.health);
 
-		$("#gameText").html("<div> You attaked the enemy for " + charClass.mainAttack + " damage points! </div>"
-		 + "<div> The enemy attacked you for" + enemyClass.mainAttack + "damage points! </div>");
+		charClass.attack2(enemyChosen);
+		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + "damage points! </div>");
+
+	}else if(spell==="attack3"){
+		var capitalizeChar = charChosen.substr(0,1).toUpperCase()+charChosen.substr(1);
+		charClass.health -= enemyClass.mainAttack;
+		$(charHP).html(capitalizeChar + ": " + charClass.health);
+
+		charClass.attack3(enemyChosen);
+		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + "damage points! </div>");
 
 	}
 
 
-
-
-	var capitalizeEnemy = enemyChosen.substr(0,1).toUpperCase()+enemyChosen.substr(1);
-	var capitalizeChar = charChosen.substr(0,1).toUpperCase()+charChosen.substr(1);
-
-	//Health bars!!! 
-	$(enemyHP).html(capitalizeEnemy + ": " + enemyClass.health);
-	$(charHP).html(capitalizeChar + ": " + charClass.health);
-
+	spell = "attack";
 
 
 
 
 	//if you loose the game! 
 	if(charClass.health<=0) {
+		attackReady=false;
 		// show game over
 		gameActive = false;
 		$("#gameText").text("You loose! Press enter to play again!");
@@ -305,11 +550,8 @@ $("#attack").unbind().click(function() {
 		$("div").off("click");
 		$("#gameText").text("You defeated the " + defeatedEnemy + " class. Please choose another enemy to fight!");
 		$("#" + defeatedEnemy).remove();
-		// chooseEnemyCalled = true;
 		chooseEnemy();
-		// if(charList.length===1){
-		// 	lastEnemyLeft = true;
-		// }
+
 		if(enemiesRemaining===0) {
 			// show game over
 			gameActive = false;
@@ -324,19 +566,77 @@ $("#attack").unbind().click(function() {
 		return;
 	}
 
-		// }else{
-		// 	// chooseEnemyCalled = false;
-		// }
+
+							}
 
 
 
-//$("div").off("click");
+
+
+
+// ATTACK BUTTON 
+$("#attack").on("click", function() {
+
+if(attackReady===true) {
+
+
+		attack();
+
+
+
+
+
+										}
 });
 
+
+
+
+
+
+// Spell Slot one! 
+$("#attack1").on("click", function() {
+
+if(attackReady===true) {
+	spell="attack1";
+	attack();
+
+
 }
+										
+});
 
 
-//DEFINE ON KEYP UP OUTSIDE OF A FUNCTION; KEEP GLOBAL EVENT LISTENER RUNNING THROUGH OUT GAME
+
+// Spell Slot Two!
+$("#attack2").on("click", function() {
+
+if(attackReady===true) {
+	spell="attack2";
+	attack();
+
+
+}
+										
+});
+
+
+//Spell Slot Three!
+$("#attack3").on("click", function() {
+
+if(attackReady===true) {
+	spell="attack3";
+	attack();
+
+
+}
+										
+});
+
+
+
+
+//DEFINE ON KEY UP OUTSIDE OF A FUNCTION; KEEP GLOBAL EVENT LISTENER RUNNING THROUGH OUT GAME
 document.onkeyup = function(event) {
 	if (!gameActive && event.which === 13) {
 		// Reset variables here
