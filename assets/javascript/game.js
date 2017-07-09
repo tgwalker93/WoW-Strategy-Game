@@ -68,6 +68,18 @@ var rogueClass = {
 
 
 	},
+	attack2: function(enemyChar) {
+		var spellName = "Poison Blade";
+
+		this.attackPower += 20;
+
+		$("#gameText").text("You increased your attack power by 20!");
+
+
+
+	},
+	attack3: function(enemyChar) {
+	},
 
 };
 
@@ -81,14 +93,44 @@ var mageClass = {
 	attack1: function(enemyChar) {
 	var spellName = "Frostbolt";
 	$("#gameText").text("You reduced the enemy's health by 20 and reduced his attack power by 10!");
-	var enemyCharObj = eval(enemyChar+ "Class");
+	var enemyCharObj = eval(enemyChar + "Class");
 	var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 	enemyCharObj.health -= 20;
 	enemyCharObj.attackPower -=10;
 
 	$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+	},
+	attack2: function(enemyChar) {
+	var spellName = "Arcane Nova";
+		hunterClass.health -= 15;
+		warriorClass.health -= 15;
+		rogueClass.health -= 15;
+		mageClass.health -= 5;
 
 
+		var hunterHP = "#hunterHP";
+		var warriorHP = "#mageHP";
+		var rogueHP = "#rogueHP";
+		var mageHP = "#warriorHP";
+
+
+		//Health bars!!! 
+		$(hunterHP).html("Hunter: " + hunterClass.health);
+		$(mageHP).html("Mage: " + mageClass.health);
+		$(rogueHP).html("Rogue: " + rogueClass.health);
+		$(warriorHP).html("Warrior: " + warriorClass.health);
+
+
+
+
+		if(gameActive===true){
+		$("#gameText").html("You cleaved 15 damage to all enemies, but you lost 5 health!");
+
+		}
+
+
+	},
+	attack3: function(enemyChar) {
 	},
 
 };
@@ -119,12 +161,26 @@ var warriorClass = {
 		$(rogueHP).html("Rogue: " + rogueClass.health);
 
 
-
-
 		if(gameActive===true){
 		$("#gameText").html("You cleaved 10 damage to all enemies!");
 
 		}
+	},
+	attack2: function(enemyChar) {
+		var spellName = "Deflect Spell";
+		var randomSpell = Math.floor(Math.random() * 3) + 1
+		var enemyCharObj = eval(enemyChar+ "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+
+		if(gameActive===true){
+		$("#gameText").html("You deflected a random spell from the enemy! (One of the enemy's unused spells)");
+
+		}
+		eval(enemyCharObj + ".attack" + randomSpell + "()");
+
+
+	},
+	attack3: function(enemyChar) {
 	},
 
 
@@ -148,6 +204,17 @@ var hunterClass = {
 		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
 
 
+	},
+	attack2: function(enemyChar) {
+		var spellName = "Beast Enrage";
+		$("#gameText").text("You increased your attack power by 10, and attacked the player for 20!");
+		var enemyCharObj = eval(enemyChar + "Class");
+		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
+		enemyCharObj.health -= 20;
+		this.attackPower += 10;
+	},
+	
+	attack3: function(enemyChar) {
 	},
 
 };
@@ -461,6 +528,34 @@ if(attackReady===true) {
 }
 										
 });
+
+
+
+// Spell Slot Two!
+$("#attack2").on("click", function() {
+
+if(attackReady===true) {
+	spell="attack2";
+	attack();
+
+
+}
+										
+});
+
+
+//Spell Slot Three!
+$("#attack3").on("click", function() {
+
+if(attackReady===true) {
+	spell="attack3";
+	attack();
+
+
+}
+										
+});
+
 
 
 
