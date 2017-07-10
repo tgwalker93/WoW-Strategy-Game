@@ -62,6 +62,9 @@ var rogueClass = {
 	health: rogueHealth,
 	mainAttack: rogueMainAttack,
 	attackPower: rogueAttackPower,
+	attack1SpellName: "Backstab",
+	attack2SpellName: "Poison Blade",
+	attack3SpellName: "Combo Strike",
 
 	attack1: function(enemyChar) {
 
@@ -124,6 +127,10 @@ var mageClass = {
 	health: mageHealth,
 	mainAttack: mageMainAttack,
 	attackPower: mageAttackPower,
+	attack1SpellName: "Frost Bolt",
+	attack2SpellName: "Fire Nova",
+	attack3SpellName: "Arcane Brilliance",
+
 
 	attack1: function(enemyChar) {
 	var spellName = "Frostbolt";
@@ -187,6 +194,11 @@ var warriorClass = {
 	health: warriorHealth,
 	mainAttack: warriorMainAttack,
 	attackPower: warriorAttackPower,
+	attack1SpellName: "Cleave",
+	attack2SpellName: "Enrage",
+	attack3SpellName: "Shield Slam",
+
+
 
 	attack1: function(enemyChar) {
 		var spellName = "Cleave";
@@ -262,6 +274,9 @@ var hunterClass = {
 	health: hunterHealth,
 	mainAttack: hunterMainAttack,
 	attackPower: hunterAttackPower,
+	attack1SpellName: "Tranquility Shot",
+	attack2SpellName: "Beast Enrage",
+	attack3SpellName: "Arcane Shot",
 
 	attack1: function(enemyChar) {
 		var spellName = "tranquilityShot";
@@ -308,7 +323,21 @@ var hunterClass = {
 
 
 
+function displaySpells(charChosen) {
+	var charChosenObj = eval(charChosen + "Class");
+	var attack1 = charChosenObj.attack1SpellName
+	var attack2 = charChosenObj.attack2SpellName
+	var attack3 = charChosenObj.attack3SpellName
 
+
+	$("#attack1").html(attack1);
+	$("#attack2").html(attack2);
+	$("#attack3").html(attack3);
+
+
+
+
+}
 
 
 
@@ -327,11 +356,12 @@ $( "#warrior" ).on("click", function() {
 	jQuery("#hunter").detach().appendTo('#enemiesArea');
 	charChosen = charList[0];
 	updateStats();
+	displaySpells(charChosen);
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
-	//updateStats();
+	updateStats();
 	return;
 
 
@@ -346,6 +376,7 @@ $( "#mage" ).on("click", function() {
 	jQuery("#hunter").detach().appendTo('#enemiesArea');
 	charChosen = charList[1];
 	updateStats();
+	displaySpells(charChosen);
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
@@ -365,6 +396,7 @@ $( "#hunter" ).on("click", function() {
 	jQuery("#rogue").detach().appendTo('#enemiesArea');
 	charChosen = charList[2];
 	updateStats();
+	displaySpells(charChosen);
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
@@ -384,11 +416,11 @@ $( "#rogue" ).on("click", function() {
 	jQuery("#hunter").detach().appendTo('#enemiesArea');
 	charChosen = charList[3];
 	updateStats();
+	displaySpells(charChosen);
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
-	//updateStats();
 	return;
 
 });
@@ -404,6 +436,8 @@ function chooseEnemy() {
 $( "#" + charList[0] ).on("click", function() {
 	jQuery("#" + charList[0]).detach().appendTo('#defenderArea');
 	enemyChosen = charList[0];
+	updateStats();
+	$("#gameText").text("You chose an enemy out of the three. Now click a spell to attack!");
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
 	attackReady = true;
@@ -415,6 +449,8 @@ $( "#" + charList[0] ).on("click", function() {
 $( "#" + charList[1] ).on("click", function() {
 	jQuery( "#" + charList[1]).detach().appendTo('#defenderArea');
 	enemyChosen = charList[1];
+	updateStats();
+	$("#gameText").text("You chose an enemy out of the three. Now click a spell to attack!");
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
 	attackReady = true;
@@ -428,6 +464,8 @@ $( "#" + charList[1] ).on("click", function() {
 $( "#" + charList[2] ).on("click", function() {
 	jQuery( "#" + charList[2]).detach().appendTo('#defenderArea');
 	enemyChosen = charList[2];
+	updateStats();
+	$("#gameText").text("You chose an enemy out of the three. Now click a spell to attack!");
 	var index = charList.indexOf(enemyChosen);
 	charList.splice(index, 1);
 	attackReady = true;
@@ -449,33 +487,51 @@ function updateStats() {
 
 //UPDATE STATS!!! 
 
-if (typeof charChosen !== 'undefined') {
+if (typeof charChosen !== "undefined") {
 	var charClass = eval(charChosen + "Class");
-	var charClass = eval(charChosen + "Class");
-	$("#charHP").html("Your Character health:  " + charClass.health );
-	$("#charAP").html("Your Character attack power: " + charClass.attackPower );
+
+
+	if(charClass.health >= 0 && charClass.attackPower >= 0){
+		$("#charHP").html("Your Character health:  " + charClass.health );
+		$("#charAP").html("Your Character attack power: " + charClass.attackPower );
+	}else{
+
+		$("#charHP").html("Your Character Health:  ");
+		$("#charAP").html("Your Character Attack Power: ");
+
+	}
+
+
 
 } else {
 
-	$("#charHP").html("Your Character health:  " + charClass.health );
-	$("#charAP").html("Your Character attack power: " + charClass.attackPower );
+	$("#charHP").html("Your Character Health:  ");
+	$("#charAP").html("Your Character Attack Power: ");
 
 }
 
 
 
 
-if (typeof enemyChosen !== "undefined"){
+if (typeof enemyChosen !== "undefined" ){
+	var enemyClass = eval(enemyChosen + "Class");
+	if(enemyClass.health >= 0 && enemyClass.attackPower >= 0){
+		$("#enemyHP").html("Enemy Health:  " + enemyClass.health );
+		$("#enemyAP").html("Enemy Attack Power: " + enemyClass.attackPower );
 
-	var enemyClass = eval(enemyChosen + "Class");
-	var enemyClass = eval(enemyChosen + "Class");
-	$("#enemyHP").html("Enemy health:  " + charClass.health );
-	$("#enemyAP").html("Enemy attack power: " + charClass.attackPower );
+	}else{
+
+		$("#enemyHP").html("Enemy Health:  ");
+		$("#enemyAP").html("Enemy Attack Power: ");
+
+	}
+
+
 
 } else {
 
-	$("#charHP").html("Your Character health:  ");
-	$("#charAP").html("Your Character attack power: ");
+	$("#enemyHP").html("Enemy Health:  ");
+	$("#enemyAP").html("Enemy Attack Power: ");
 
 }
 
@@ -557,7 +613,7 @@ function attack() {
 
 	spell = "attack";
 
-
+	updateStats();
 
 
 	//if you loose the game! 
@@ -573,13 +629,17 @@ function attack() {
 	//If enemy is defeated!
 	if(enemyClass.health<=0){
 		enemiesRemaining -= 1;
+		attackReady=false;
 		var defeatedEnemy = enemyChosen;
+		var capitalizeChar = defeatedEnemy.substr(0,1).toUpperCase()+defeatedEnemy.substr(1);
 		$("div").off("click");
 		$("#gameText").text("You defeated the " + defeatedEnemy + " class. Please choose another enemy to fight!");
-		$("#" + defeatedEnemy).remove();
+		//$("#" + defeatedEnemy).css("visibility", "hidden");
+		$("#" + defeatedEnemy + "HP").html(capitalizeChar + ": Dead");
 		chooseEnemy();
 
 		if(enemiesRemaining===0) {
+			attackReady=false;
 			// show game over
 			gameActive = false;
 			$("#gameText").text("You win! Press enter to play again!");
@@ -608,6 +668,7 @@ if(attackReady===true) {
 
 
 		attack();
+		updateStats();
 
 
 
@@ -627,6 +688,7 @@ $("#attack1").on("click", function() {
 if(attackReady===true) {
 	spell="attack1";
 	attack();
+	updateStats();
 
 
 }
@@ -641,6 +703,7 @@ $("#attack2").on("click", function() {
 if(attackReady===true) {
 	spell="attack2";
 	attack();
+	updateStats();
 
 
 }
@@ -654,6 +717,7 @@ $("#attack3").on("click", function() {
 if(attackReady===true) {
 	spell="attack3";
 	attack();
+	updateStats();
 
 
 }
@@ -667,21 +731,68 @@ if(attackReady===true) {
 //DEFINE ON KEY UP OUTSIDE OF A FUNCTION; KEEP GLOBAL EVENT LISTENER RUNNING THROUGH OUT GAME
 document.onkeyup = function(event) {
 	if (!gameActive && event.which === 13) {
+		gameActive = true;
+
+
+
 		// Reset variables here
-		var charList = ["warrior", "mage", "hunter", "rogue"];
+		charList = ["warrior", "mage", "hunter", "rogue"];
 
 
-		var charChosen;
-		var enemyChosen;
-		var warriorHealth = 140;
-		var mageHealth = 80;
-		var hunterHealth = 120;
-		var rogueHealth = 100; 
-		var enemiesRemaining = 3;
-		var gameActive = true;
-		var attackReady = false;
-		var spell = "attack";
+		charChosen = undefined;
+		enemyChosen = undefined;
+		enemiesRemaining = 3;
+		gameActive = true;
+		attackReady = false;
+		spell = "attack";
 
+
+		//OBJECT VARRIABLES
+
+		//obj health
+		warriorHealth = 140; 
+		mageHealth = 80;
+		hunterHealth = 120;
+		rogueHealth = 100;
+
+		//obj attack power
+		mageAttackPower = 2;
+		hunterAttackPower = 2;
+		rogueAttackPower = 2;
+		warriorAttackPower = 2; 
+
+		//obj main attack
+		mageMainAttack = 1;
+		hunterMainAttack = 1;
+		rogueMainAttack = 1;
+		warriorMainAttack = 1; 
+
+		// END OBJECT VARIABLES
+
+
+
+		warriorClass.health = 140;
+		mageClass.health = 80;
+		hunterClass.health = 120;
+		rogueClass.health = 100;
+
+
+
+		warriorClass.attackPower = 2;
+		mageClass.attackPower = 2;
+		hunterClass.attackPower = 2;
+		rogueClass.attackPower = 2;
+
+
+		warriorClass.mainAttack = 1;
+		mageClass.mainAttack = 1;
+		hunterClass.mainAttack = 1;
+		rogueClass.mainAttack = 1;
+
+
+
+
+		//Placing all characters back in the your character panel
 		jQuery("#mage").detach().appendTo('#characterArea');
 		jQuery("#rogue").detach().appendTo('#characterArea');
 		jQuery("#hunter").detach().appendTo('#characterArea');
@@ -689,16 +800,22 @@ document.onkeyup = function(event) {
 
 
 
+
+
+		$("#warriorHP").html("Warrior: " + warriorClass.health);
+		$("#mageHP").html("Mage: " + mageClass.health);
+		$("#rogueHP").html("Rogue: " + rogueClass.health);
+		$("#hunterHP").html("Hunter: " + hunterClass.health);
+
+		//Change text on buttons
+		$("#attack1").html("Spell Slot 1");
+		$("#attack2").html("Spell Slot 2");
+		$("#attack3").html("Spell Slot 3");
+
+
 		//Choosing enemy function is called inside chooseCharacter
 		chooseCharacter();
-		//updateStats();
-
-
-
-
-
-		gameActive = true;
-		//location.reload();
+		$("#gameText").html("Select your character to begin!");
 	}
 }
 

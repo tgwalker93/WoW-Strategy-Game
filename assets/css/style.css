@@ -1,16 +1,19 @@
 html {
   height: 100%;
+  zoom: 52%;
 }
 body {
   min-height: 100%;
   overflow-x:hidden;
-  background-image:url("../images/wow2.jpg");
+  background-image:url("../images/background.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   color: black;
-
+  font-family: 'Bungee Inline', cursive;
+  font-family: 'Gravitas One', cursive;
+  font-family: 'Vast Shadow', cursive;
 }
 
 img {
@@ -20,6 +23,42 @@ img {
 }
 
 
+
+button {
+  background-color:#238f4e;
+  color:#FFF;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#gameText {
+
+
+}
+
+h1 {
+
+}
+
+.panel-title {
+
+    text-align: center;
+    font-size: 160%;
+    background-color: #238f4e;
+
+}
+
+.panel-body {
+    background-color: #5ff5a7;
+}
+
+.panel-heading {
+  background-color: #238f4e;
+  padding: 0px;
+}
+
+.jumbotron {
+  background-color: #238f4e;
+}
 
 /*------ IMAGES ------------------------------------------------*/
 
@@ -41,6 +80,7 @@ img {
 }
 
 .work h3 {
+  font-size: 85%;
   position: absolute;
   bottom: 20px;
   width: 100%;
@@ -50,11 +90,17 @@ img {
   line-height: 30px;
   color: #fff;
   text-align: center;
-  background: #4aaaa5;
+  background: #238f4e;
   border-bottom: 0;
 }
 
 /*------ END IMAGES ------------------------------------------------*/
+
+
+
+.row {
+  margin-left: 1%;
+}
 
 
 @media (min-width: 992px) {
@@ -64,6 +110,21 @@ img {
   width: 11%;
 
 }
+
+}
+
+@media (min-width: 992px) {
+
+  #characterArea {
+    width: 67%;
+  }
+  #enemiesArea {
+    width: 67%;
+  }
+  #defenderArea {
+    width: 67%;
+  }
+
 
 
 }

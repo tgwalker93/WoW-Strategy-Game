@@ -16,21 +16,31 @@
 	<!-- JQuery -->
  	<script src="https://code.jquery.com/jquery.js"></script>
 
+
+ 	<!--- Google Fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Gravitas+One|Vast+Shadow" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:700" rel="stylesheet">
+
 </head>
 <body>
 
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3">RPG GAME!</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <h1 class="display-3">World of Warcraft RPG GAME!</h1>
+    <p class="lead"></p>
   </div>
 </div>
 
 
 
+
+
+
+<div class="w3-container"> 
+
 <!-- BIG FIRST COLUMN -->
-<div class="row">
+<div class="row" id="mainRow">
 <div class="col-sm-6">
 
 
@@ -53,7 +63,7 @@
 		<div class="work">
     		<img src="assets/images/warrior.jpg" alt="hangman">
 
-        	<h3 id="warriorHP">Warrior–HP:140</h3>
+        	<h3 id="warriorHP">Warrior: 140</h3>
       	</div>
 
     </div>
@@ -65,7 +75,7 @@
 	      <div class="work">
 	        <img src="assets/images/mage.jpg" alt="RPG Game">
 
-	       <h3 id="mageHP">Mage–HP:80</h3>
+	       <h3 id="mageHP">Mage: 80</h3>
 	      </div>
 
       </div>
@@ -77,7 +87,7 @@
 	      <div class="work">
 	        <img src="assets/images/hunter.jpg" alt="Trivia Game">
 
-	        <h3 id="hunterHP">Hunter–HP:120</h3>
+	        <h3 id="hunterHP">Hunter: 120</h3>
 	      </div>
 
       </div>
@@ -89,7 +99,7 @@
 		  <div class="work">
 		    <img src="assets/images/rogue.jpg" alt="Rutgers Info Widget">
 
-		    <h3 id="rogueHP">Rogue–HP:100</h3>
+		    <h3 id="rogueHP">Rogue: 100</h3>
 		  </div>
 
       </div>
@@ -243,7 +253,7 @@
     <h1 class="panel-title">Game Text</h1>
   </div>
   <div class="panel-body">
-   		<h1 id="gameText"> Select your character! </h1>
+   		<p id="gameText"> The game is simple. Each character has a set of 3 spells on top of their original attack.  Each character has health and attack power. Attack power will always represent how much extra damage your character's "attack" spell will do to the enemy. Please note, your attack power only affects the "attack" slot and not your 3 spell slots. Some spells increase attack power, others will increase the player's HP, and others will attack all enemies. After you select a character, you must defeat the other three characters. All enemy characters will always do the same damage. Select your character to begin! </p>
 
 
 		<div id="gameArea"> </div>
@@ -307,9 +317,9 @@
 </div>
 
 
-
-
-
+												
+												
+												</div>
 
   <!--- Javascript-->
   <script type="text/javascript" src="assets/javascript/game.js"></script>
