@@ -29,21 +29,27 @@
 
 
 
-
-
+<!-- BIG FIRST COLUMN -->
+<div class="row">
+<div class="col-sm-6">
 
 
 
 <div class="row">	
+<div class="col-sm-12">	
 
-<div class="col-md-12">	
 
+  <div id="character">
 
-	<div id="character"> <h1> Your Character </h1>
+<div class="panel panel-default"> 
 
- 	<div class="row" style="margin-right: 0;margin-left: 0">
+  <div class="panel-heading">  <h1 class="panel-title">Your Character</h1></div>
+  <div class="panel-body">
+    	<div class="row" style="margin-right: 0;margin-left: 0">
 
-	<div id="warrior" class="col-md-2">	
+ 					<div id="characterArea"> 
+
+	<div id="warrior" class="col-md-3">	
 		<div class="work">
     		<img src="assets/images/warrior.jpg" alt="hangman">
 
@@ -54,7 +60,7 @@
 
 
 
-      	<div id="mage" class="col-md-2">	
+      	<div id="mage" class="col-sm-3">	
 
 	      <div class="work">
 	        <img src="assets/images/mage.jpg" alt="RPG Game">
@@ -66,7 +72,7 @@
 
 
 
-      <div id ="hunter" class="col-md-2">
+      <div id ="hunter" class="col-sm-3">
 
 	      <div class="work">
 	        <img src="assets/images/hunter.jpg" alt="Trivia Game">
@@ -78,7 +84,7 @@
 
 
 
-      <div id="rogue" class="col-md-2">
+      <div id="rogue" class="col-sm-3">
 
 		  <div class="work">
 		    <img src="assets/images/rogue.jpg" alt="Rutgers Info Widget">
@@ -87,16 +93,11 @@
 		  </div>
 
       </div>
+					</div>
 
-
-	</div>
-
-
-
-
-
-
-
+								</div>
+  </div>
+							</div>
 
 
 
@@ -107,20 +108,21 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
+	<!-- END OF FIRST COLUMN ROW 1 -->
 
 </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -129,15 +131,90 @@
 
 <!-- NEW ROW -->
 <div class="row">
-	<div class="col-md-12">	
+	<div class="col-sm-12">	
 
 
-	<div id="enemies"> <h1> Enemies Available to Attack </h1> </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title"><div id="enemies"> <h1> Enemies Available to Attack </h1> </div></h1>
+  </div>
+  <div class="panel-body">
+ 
+		<div id="enemiesArea"> </div>
 
 
 
-	<div id="enemiesArea"> </div>
+  </div>
+</div>
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- END OF SECOND MAIN ROW AND COLUMN -->
+	</div>
+
+</div>
+
+
+
+
+<!-- THIRD ROW -->
+<div class="row">
+	<div class="col-sm-12">	
+	
+	<div class="panel panel-default">
+  <div class="panel-heading">
+   <div id="fight"> <h1 class="panel-title">Fight Section</h1> </div>
+  </div>
+  <div class="panel-body">
+    <div id="fightArea"> 
+		<button id="attack" type="button" class="btn btn-outline-primary">Attack</button>
+		<button id="attack1" type="button" class="btn btn-outline-primary">Spell Slot 1</button>
+		<button id="attack2" type="button" class="btn btn-outline-primary">Spell Slot 2</button>
+		<button id="attack3" type="button" class="btn btn-outline-primary">Spell Slot 3</button>
+	</div>
+  </div>
+	</div>
+
+
+
+
+<!-- END OF THIRD MAIN ROW AND COLUMN -->
+	</div>
+
+</div>
+
+
+
+
+<!-- FOURTH ROW -->
+<div class="row">
+	<div class="col-sm-12">	
+
+
+
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <div id = "defender"> <h1 class="panel-title">Defender</h1> </div>
+	  </div>
+	  <div class="panel-body">
+	    <div id="defenderArea"> </div>
+	  </div>
+	</div>
+
+
+
+
+<!-- END OF FOURTH ROW AND COLUMN -->
 	</div>
 
 </div>
@@ -146,65 +223,87 @@
 
 
 
+<!-- END OF FIRST COLUMN CONTAINER ROW  -->		
+			</div>
 
-<!-- NEW ROW -->
+
+
+
+<!-- MAIN COLUMN TO THE RIGHT  -->
+<div class="col-sm-4">	
+
+
+<!-- FIRST ROW SECOND COLUMN  -->
 <div class="row">
-	<div class="col-md-12">	
+	<div class="col-sm-12">	
 
 
-	<div id="fight"> <h1> Fight Section </h1>
-	<button id="attack" type="button" class="btn btn-outline-primary">Attack</button>
-	<button id="attack1" type="button" class="btn btn-outline-primary">Spell Slot 1</button>
-	<button id="attack2" type="button" class="btn btn-outline-primary">Spell Slot 2</button>
-	<button id="attack3" type="button" class="btn btn-outline-primary">Spell Slot 3</button>
-
-	</div>
-
-
-	<div id="fightArea"> </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Game Text</h1>
+  </div>
+  <div class="panel-body">
+   		<h1 id="gameText"> Select your character! </h1>
 
 
+		<div id="gameArea"> </div>
+  </div>
+</div>
 
-	</div>
+
+
+
+
+<!-- END FIRST ROW SECOND COLUMN  -->
+</div>
 
 </div>
 
 
 
 
-<!-- NEW ROW -->
+
+
+
+<!-- FIRST ROW SECOND COLUMN  -->
 <div class="row">
-	<div class="col-md-12">	
+	<div class="col-sm-12">	
 
 
-	<div id = "defender"> <h1> Defender </h1> </div>
+<div class="panel panel-default">
+	  <div class="panel-heading">
+		<h1 class="panel-title">Stats</h1> 
+	 
+	  </div>
 
+  <div class="panel-body">
+   		<h1 id="charHP"> Your Character HP:  </h1>
+   		<h1 id="charAP"> Your Character Attack Power:  </h1>
+   		<br>
+   		<h1 id="enemyHP"> Enemy HP:  </h1>
+   		<h1 id="enemyAP"> Enemy Attack Power:  </h1>
 
-	<div id="defenderArea"> </div>
+  </div>
 
-	</div>
 
 </div>
 
 
 
 
-<!-- NEW ROW -->
-<div class="row">
-	<div class="col-md-4">	
 
-
-	<h1 id="gameText"> Select your character! </h1>
-
-
-	<div id="gameArea"> </div>
-
-	</div>
-	<div class="col-md-4">	
-	</div>
-	<div class="col-md-4"> <h1 id="classStuff"> </h1>	
+<!-- END FIRST ROW SECOND COLUMN  -->
 	</div>
 
+	</div>
+
+
+
+
+
+
+
+<!-- END OF MAIN COLUMN TO THE RIGHT  -->
 </div>
 
 

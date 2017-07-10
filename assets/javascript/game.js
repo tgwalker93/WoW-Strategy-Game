@@ -8,14 +8,35 @@ var charList = ["warrior", "mage", "hunter", "rogue"];
 
 var charChosen;
 var enemyChosen;
-var warriorHealth = 140;
-var mageHealth = 80;
-var hunterHealth = 120;
-var rogueHealth = 100; 
+
 var enemiesRemaining = 3;
 var gameActive = true;
 var attackReady = false;
 var spell = "attack";
+
+
+//OBJECT VARRIABLES
+
+//obj health
+var warriorHealth = 140; 
+var mageHealth = 80;
+var hunterHealth = 120;
+var rogueHealth = 100;
+
+//obj attack power
+var mageAttackPower = 2;
+var hunterAttackPower = 2;
+var rogueAttackPower = 2;
+var warriorAttackPower = 2; 
+
+//obj main attack
+var mageMainAttack = 1;
+var hunterMainAttack = 1;
+var rogueMainAttack = 1;
+var warriorMainAttack = 1; 
+
+// END OBJECT VARIABLES
+
 
 $('#classRow').append($('<img>',{id:'roge',src:'assets/images/warrior.jpg'}))
 
@@ -39,8 +60,8 @@ $('#classRow').append($('<img>',{id:'roge',src:'assets/images/warrior.jpg'}))
 //ROGUE SPELLS
 var rogueClass = {
 	health: rogueHealth,
-	mainAttack: 1,
-	attackPower: 2,
+	mainAttack: rogueMainAttack,
+	attackPower: rogueAttackPower,
 
 	attack1: function(enemyChar) {
 
@@ -101,8 +122,8 @@ var rogueClass = {
 //MAGE SPELLS
 var mageClass = {
 	health: mageHealth,
-	mainAttack: 1,
-	attackPower: 2,
+	mainAttack: mageMainAttack,
+	attackPower: mageAttackPower,
 
 	attack1: function(enemyChar) {
 	var spellName = "Frostbolt";
@@ -164,8 +185,8 @@ var mageClass = {
 //WARRIOR SPELLS 
 var warriorClass = {
 	health: warriorHealth,
-	mainAttack: 1,
-	attackPower: 2,
+	mainAttack: warriorMainAttack,
+	attackPower: warriorAttackPower,
 
 	attack1: function(enemyChar) {
 		var spellName = "Cleave";
@@ -239,8 +260,8 @@ var warriorClass = {
 //HUNTER SPELLS 
 var hunterClass = {
 	health: hunterHealth,
-	mainAttack: 1,
-	attackPower: 2,
+	mainAttack: hunterMainAttack,
+	attackPower: hunterAttackPower,
 
 	attack1: function(enemyChar) {
 		var spellName = "tranquilityShot";
@@ -291,40 +312,26 @@ var hunterClass = {
 
 
 
-$("#classStuff").html("Warrior Health " + warriorClass.health + "<br>" 
-	 + "Mage Health " + mageClass.health + "<br>" 
-	 + "rogue Health " + rogueClass.health + "<br>" 
-	 + "hunter Health " + hunterClass.health + "<br>" +
-	"Warrior Attack Power: " + warriorClass.attackPower
-	+ "<br>" + "Warrior Damage: " + warriorClass.mainAttack
-	+ "<br> Start of program");
-
-
 
 
 function chooseCharacter() {
-$("#classStuff").html("Warrior Health: " + warriorClass.health + "<br>" 
-	 + "Mage Health: " + mageClass.health + "<br>" 
-	 + "rogue Health: " + rogueClass.health + "<br>" 
-	 + "hunter Health: " + hunterClass.health + "<br>" +
-	"Warrior Attack Power: " + warriorClass.attackPower
-	+ "<br>" + "Warrior Damage: " + warriorClass.mainAttack
-	+ "<br> inside chooseCharacter function");
 
 
 // CLICKING ON Warrior
 
 $( "#warrior" ).on("click", function() {
 
-	$("#gameText").text("You chose Warrior! ");
+	$("#gameText").text("You chose Warrior! Now choose your enemy to attack! ");
 	jQuery("#mage").detach().appendTo('#enemiesArea');
 	jQuery("#rogue").detach().appendTo('#enemiesArea');
 	jQuery("#hunter").detach().appendTo('#enemiesArea');
 	charChosen = charList[0];
+	updateStats();
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
+	//updateStats();
 	return;
 
 
@@ -333,16 +340,17 @@ $( "#warrior" ).on("click", function() {
 // CLICKING ON MAGE
 $( "#mage" ).on("click", function() {
 
-	$("#gameText").text("You chose Mage! ");
+	$("#gameText").text("You chose Mage! Now choose your enemy to attack!");
 	jQuery("#warrior").detach().appendTo('#enemiesArea');
 	jQuery("#rogue").detach().appendTo('#enemiesArea');
 	jQuery("#hunter").detach().appendTo('#enemiesArea');
 	charChosen = charList[1];
-	console.log(charChosen);
+	updateStats();
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
+	//updateStats();
 	return;
 
 
@@ -351,16 +359,17 @@ $( "#mage" ).on("click", function() {
 // CLICKING ON HUNTER
 $( "#hunter" ).on("click", function() {
 
-	$("#gameText").text("You chose Hunter! ");
+	$("#gameText").text("You chose Hunter! Now choose your enemy to attack!");
 	jQuery("#warrior").detach().appendTo('#enemiesArea');
 	jQuery("#mage").detach().appendTo('#enemiesArea');
 	jQuery("#rogue").detach().appendTo('#enemiesArea');
 	charChosen = charList[2];
-	console.log(charChosen);
+	updateStats();
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
+	//updateStats();
 	return;
 
 
@@ -368,21 +377,21 @@ $( "#hunter" ).on("click", function() {
 // CLICKING ON ROGUE
 $( "#rogue" ).on("click", function() {
 
-	$("#gameText").text("You chose Rogue! ");
+	$("#gameText").text("You chose Rogue! Now choose your enemy to attack!");
 
 	jQuery("#warrior").detach().appendTo('#enemiesArea');
 	jQuery("#mage").detach().appendTo('#enemiesArea');
 	jQuery("#hunter").detach().appendTo('#enemiesArea');
 	charChosen = charList[3];
-	console.log(charChosen);
+	updateStats();
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
+	//updateStats();
 	return;
 
 });
-
 
 }
 
@@ -391,13 +400,6 @@ $( "#rogue" ).on("click", function() {
 
 //FUNCTION FOR CHOOSING ENEMY ------------------
 function chooseEnemy() {
-$("#classStuff").html("Warrior Health " + warriorClass.health + "<br>" 
-	 + "Mage Health " + mageClass.health + "<br>" 
-	 + "rogue Health " + rogueClass.health + "<br>" 
-	 + "hunter Health " + hunterClass.health + "<br>" +
-	"Warrior Attack Power: " + warriorClass.attackPower
-	+ "<br>" + "Warrior Damage: " + warriorClass.mainAttack
-	+ "<br> inside chooseEnemy function");
 
 $( "#" + charList[0] ).on("click", function() {
 	jQuery("#" + charList[0]).detach().appendTo('#defenderArea');
@@ -443,21 +445,46 @@ $( "#" + charList[2] ).on("click", function() {
 
 
 
+function updateStats() {
+
+//UPDATE STATS!!! 
+
+if (typeof charChosen !== 'undefined') {
+	var charClass = eval(charChosen + "Class");
+	var charClass = eval(charChosen + "Class");
+	$("#charHP").html("Your Character health:  " + charClass.health );
+	$("#charAP").html("Your Character attack power: " + charClass.attackPower );
+
+} else {
+
+	$("#charHP").html("Your Character health:  " + charClass.health );
+	$("#charAP").html("Your Character attack power: " + charClass.attackPower );
+
+}
+
+
+
+
+if (typeof enemyChosen !== "undefined"){
+
+	var enemyClass = eval(enemyChosen + "Class");
+	var enemyClass = eval(enemyChosen + "Class");
+	$("#enemyHP").html("Enemy health:  " + charClass.health );
+	$("#enemyAP").html("Enemy attack power: " + charClass.attackPower );
+
+} else {
+
+	$("#charHP").html("Your Character health:  ");
+	$("#charAP").html("Your Character attack power: ");
+
+}
 
 
 
 
 
 
-$("#classStuff").html("Warrior Health " + warriorClass.health + "<br>" 
-	 + "Mage Health " + mageClass.health + "<br>" 
-	 + "rogue Health " + rogueClass.health + "<br>" 
-	 + "hunter Health " + hunterClass.health + "<br>" +
-	"Warrior Attack Power: " + warriorClass.attackPower
-	+ "<br>" + "Warrior Damage: " + warriorClass.mainAttack
-	+ "<br> inside chooseEnemy function");
-
-
+};
 
 
 function attack() {
@@ -636,12 +663,42 @@ if(attackReady===true) {
 
 
 
+//---------------------GAME RESET ----------------------------------------------
 //DEFINE ON KEY UP OUTSIDE OF A FUNCTION; KEEP GLOBAL EVENT LISTENER RUNNING THROUGH OUT GAME
 document.onkeyup = function(event) {
 	if (!gameActive && event.which === 13) {
 		// Reset variables here
+		var charList = ["warrior", "mage", "hunter", "rogue"];
+
+
+		var charChosen;
+		var enemyChosen;
+		var warriorHealth = 140;
+		var mageHealth = 80;
+		var hunterHealth = 120;
+		var rogueHealth = 100; 
+		var enemiesRemaining = 3;
+		var gameActive = true;
+		var attackReady = false;
+		var spell = "attack";
+
+		jQuery("#mage").detach().appendTo('#characterArea');
+		jQuery("#rogue").detach().appendTo('#characterArea');
+		jQuery("#hunter").detach().appendTo('#characterArea');
+		jQuery("#warrior").detach().appendTo('#characterArea');
+
+
+
+		//Choosing enemy function is called inside chooseCharacter
+		chooseCharacter();
+		//updateStats();
+
+
+
+
+
 		gameActive = true;
-		location.reload();
+		//location.reload();
 	}
 }
 
@@ -649,7 +706,6 @@ document.onkeyup = function(event) {
 
 //Choosing enemy function is called inside chooseCharacter
 chooseCharacter();
-
 
 });
 
