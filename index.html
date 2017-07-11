@@ -63,7 +63,7 @@
 		<div class="work">
     		<img src="assets/images/warrior.jpg" alt="hangman">
 
-        	<h3 id="warriorHP">Warrior: 140</h3>
+        	<h3 id="warriorHP">Warrior: 130</h3>
       	</div>
 
     </div>
@@ -75,7 +75,7 @@
 	      <div class="work">
 	        <img src="assets/images/mage.jpg" alt="RPG Game">
 
-	       <h3 id="mageHP">Mage: 80</h3>
+	       <h3 id="mageHP">Mage: 100</h3>
 	      </div>
 
       </div>
@@ -99,7 +99,7 @@
 		  <div class="work">
 		    <img src="assets/images/rogue.jpg" alt="Rutgers Info Widget">
 
-		    <h3 id="rogueHP">Rogue: 100</h3>
+		    <h3 id="rogueHP">Rogue: 110</h3>
 		  </div>
 
       </div>
@@ -253,7 +253,7 @@
     <h1 class="panel-title">Game Text</h1>
   </div>
   <div class="panel-body">
-   		<p id="gameText"> The game is simple. Each character has a set of 3 spells on top of their original attack.  Each character has health and attack power. Attack power will always represent how much extra damage your character's "attack" spell will do to the enemy. Please note, your attack power only affects the "attack" slot and not your 3 spell slots. Some spells increase attack power, others will increase the player's HP, and others will attack all enemies. After you select a character, you must defeat the other three characters. All enemy characters will always do the same damage. Select your character to begin! </p>
+   		<p id="gameText"> How to play: Each character has a set of 3 spells on top of their original attack.  Each character has health and attack power. Attack power will always represent how much extra damage your character's "attack" spell will do to the enemy. Attack power will naturally increase every round. Please note, your attack power only affects the "attack" slot and not your 3 spell slots. Each spell will do something different, and every class has 3 unique spells. After you select a character, you must defeat the other three characters. After you defeat an enemy, the new enemy attack power will reset back to 0. Enemy attack power constantly grows. However, your character attack power stays the same. You have to find the right time, after building enough attack power, to start using your attack. Every class has atleast one spell that increases attack power. Using attack is essential to winning the game. Select your character to begin! </p>
 
 
 		<div id="gameArea"> </div>
@@ -289,9 +289,11 @@
   <div class="panel-body">
    		<h1 id="charHP"> Your Character HP:  </h1>
    		<h1 id="charAP"> Your Character Attack Power:  </h1>
+   		<h1 id="charA"> Your Character Attack:  </h1>
    		<br>
    		<h1 id="enemyHP"> Enemy HP:  </h1>
    		<h1 id="enemyAP"> Enemy Attack Power:  </h1>
+   		<h1 id="enemyA"> Enemy Attack:  </h1>
 
   </div>
 
@@ -302,16 +304,47 @@
 
 
 
-<!-- END FIRST ROW SECOND COLUMN  -->
 	</div>
 
+</div>
+
+
+
+
+
+
+
+<!-- FIRST ROW SECOND COLUMN  -->
+<div class="row">
+	<div class="col-sm-12">	
+
+
+<div class="panel panel-default">
+	  <div class="panel-heading">
+		<h1 class="panel-title">Spell Info</h1> 
+	 
+	  </div>
+
+  <div class="panel-body">
+   		<h1 id="spellInfo1"> </h1>
+   		<br>
+   		<h1 id="spellInfo2"> </h1>
+   		<br>
+   		<h1 id="spellInfo3"></h1>
+   		<br>
+
+  </div>
+
+
+</div>
+
+
+
+
+
 	</div>
 
-
-
-
-
-
+</div>
 
 <!-- END OF MAIN COLUMN TO THE RIGHT  -->
 </div>

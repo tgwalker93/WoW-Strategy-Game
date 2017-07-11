@@ -18,16 +18,16 @@ var spell = "attack";
 //OBJECT VARRIABLES
 
 //obj health
-var warriorHealth = 140; 
-var mageHealth = 80;
+var warriorHealth = 130; 
+var mageHealth = 100;
 var hunterHealth = 120;
-var rogueHealth = 100;
+var rogueHealth = 110;
 
 //obj attack power
-var mageAttackPower = 2;
-var hunterAttackPower = 2;
-var rogueAttackPower = 2;
-var warriorAttackPower = 2; 
+var mageAttackPower = 0;
+var hunterAttackPower = 0;
+var rogueAttackPower = 0;
+var warriorAttackPower = 0; 
 
 //obj main attack
 var mageMainAttack = 1;
@@ -40,20 +40,7 @@ var warriorMainAttack = 1;
 
 $('#classRow').append($('<img>',{id:'roge',src:'assets/images/warrior.jpg'}))
 
-//Create a class for all the character choices! 
-// class charClass {
-// 	constructor(health) {
-// 	this.health = health;
-// 	//this.attackPower = attackPower;
-// 	}
-// }
 
-
-// //Create objects for each possible character selection
-// var rogueClass = new charClass(rogueHealth);
-// var warriorClass = new charClass(warriorHealth);
-// var mageClass = new charClass(mageHealth);
-// var hunterClass = new charClass(hunterHealth);
 
 //OBJECTS FOR CLASS SPELLS --------------------------------------
 
@@ -66,27 +53,32 @@ var rogueClass = {
 	attack2SpellName: "Poison Blade",
 	attack3SpellName: "Combo Strike",
 
+	//Spell Info
+	attack1SpellInfo: "Backstab: 25% chance to attack the enemy for 130. ",
+	attack2SpellInfo: "Poison Blade: Increase your attack power by 10. ",
+	attack3SpellInfo: "Combo Strike: Increase your attack power by 5 and attack the enemy for 15. ",
+
+
 	attack1: function(enemyChar) {
 
 		var spellName = "Backstab";
-		var successHit = Math.floor(Math.random() * 2) + 1
+		var successHit = Math.floor(Math.random() * 4) + 1
 		var enemyCharObj = eval(enemyChar+ "Class");
 		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 
 
 		if(successHit===1){
 
-			enemyCharObj.health -= 50
-			//$("#rogue").html("Rogue: " + rogueClass.health);
-			//$("#" + enemyChar + "HP").html(enemyChar + ": " + enemyCharObj.health);
+			enemyCharObj.health -= 130
 
-			$("#gameText").text("You successfully backedstabbed your enemy for 50 health! (50% chance)");
+
+			$("#gameText").text("You successfully backedstabbed your enemy for 130 health! (25% chance)");
 			$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
 
 
 			return;
 		}else {
-			$("#gameText").text("Your backstabbed attacked missed! (50% chance)");
+			$("#gameText").text("Your backstabbed attacked missed! (25% chance)");
 			return;
 		}
 
@@ -95,9 +87,9 @@ var rogueClass = {
 	attack2: function(enemyChar) {
 		var spellName = "Poison Blade";
 
-		this.attackPower += 30;
+		rogueClass.attackPower += 10;
 
-		$("#gameText").text("You increased your attack power by 30!");
+		$("#gameText").text("You increased your attack power by 10!");
 
 
 
@@ -106,17 +98,17 @@ var rogueClass = {
 		var spellName = "Combo Strike"
 
 
-		$("#gameText").text("You increased your attack power by 15 and attack the enemy for 5!");
+		$("#gameText").text("You increased your attack power by 5 and attack the enemy for 15!");
 		var enemyCharObj = eval(enemyChar+ "Class");
 		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 
 		//attack!
-		this.attackPower += 15;
-		enemyCharObj.health -= 5;
+		rogueClass.attackPower += 5;
+		enemyCharObj.health -= 15;
 
 		//UPDATE HP
 		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
-		$("#rogueHP").html("Rogue: " + this.health);
+		$("#rogueHP").html("Rogue: " + rogueClass.health);
 	},
 
 };
@@ -131,23 +123,27 @@ var mageClass = {
 	attack2SpellName: "Fire Nova",
 	attack3SpellName: "Arcane Brilliance",
 
+	//Spell Info
+	attack1SpellInfo: "Frostbolt: You attack your enemy for 20 and increase your attack power by 5",
+	attack2SpellInfo: "Fire Nova: Blast all enemies for 20 damage but you lose 5 health.",
+	attack3SpellInfo: "Arcane Brilliance: Increase your attack power by 10 and health by 10.",
 
 	attack1: function(enemyChar) {
 	var spellName = "Frostbolt";
-	$("#gameText").text("You reduced the enemy's health by 20 and reduced his attack power by 10!");
+	$("#gameText").text("You attack your enemy for 20 and increase your attack power by 5");
 	var enemyCharObj = eval(enemyChar + "Class");
 	var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 	enemyCharObj.health -= 20;
-	enemyCharObj.attackPower -=10;
+	mageClass.attackPower += 5;
 
 	$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
 	},
 	attack2: function(enemyChar) {
 	var spellName = "Fire Nova";
-		hunterClass.health -= 15;
-		warriorClass.health -= 15;
-		rogueClass.health -= 15;
-		this.health -= 5;
+		hunterClass.health -= 20;
+		warriorClass.health -= 20;
+		rogueClass.health -= 20;
+		mageClass.health -= 5;
 
 
 		var hunterHP = "#hunterHP";
@@ -166,7 +162,7 @@ var mageClass = {
 
 
 		if(gameActive===true){
-		$("#gameText").html("You cleaved 15 damage to all enemies, but you lost 5 health!");
+		$("#gameText").html("You cleaved 20 damage to all enemies, but you lost 5 health!");
 
 		}
 
@@ -176,14 +172,14 @@ var mageClass = {
 		var spellName = "Arcane Brilliance";
 
 		if(gameActive===true){
-		$("#gameText").html("You increased your attack power by 10 and your health by 10");
+		$("#gameText").html("You increased your attack power by 10 and your health by 10!");
 
 		}
 
-		this.attackPower += 10;
-		this.health += 10;
+		mageClass.attackPower += 10;
+		mageClass.health += 10;
 
-		$("#mageHP").html("Mage: " + this.health);
+		$("#mageHP").html("Mage: " + mageClass.health);
 	},
 
 };
@@ -197,6 +193,13 @@ var warriorClass = {
 	attack1SpellName: "Cleave",
 	attack2SpellName: "Enrage",
 	attack3SpellName: "Shield Slam",
+
+
+
+	//Spell Info
+	attack1SpellInfo: "Cleave: Deal 10 damage to all enemies. ",
+	attack2SpellInfo: "Enrage: Attack your enemy for 30 but you lose 10 health. ",
+	attack3SpellInfo: "Shield Slam: You attack your enemy for 10 and you gain 5 attack power. ",
 
 
 
@@ -235,12 +238,12 @@ var warriorClass = {
 
 		}
 		enemyCharObj.health -= 30;
-		this.health -=10;
+		warriorClass.health -=10;
 
 
 		//Update HP
 		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
-		$("#warriorHP").html("Warrior: " + this.health);
+		$("#warriorHP").html("Warrior: " + warriorClass.health);
 		
 
 
@@ -251,17 +254,17 @@ var warriorClass = {
 		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 
 		if(gameActive===true){
-		$("#gameText").html("You attack your enemy for 10 and you gained 20 attack power!");
+		$("#gameText").html("You attack your enemy for 10 and you gained 5 attack power!");
 
 		}	
 		enemyCharObj.health -= 10;
-		this.attackPower += 20;
+		warriorClass.attackPower += 5;
 
 
 
 		//Update HP
 		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
-		$("#warriorHP").html("Warrior: " + this.health);
+		$("#warriorHP").html("Warrior: " + warriorClass.health);
 
 	},
 
@@ -278,40 +281,63 @@ var hunterClass = {
 	attack2SpellName: "Beast Enrage",
 	attack3SpellName: "Arcane Shot",
 
+
+
+
+	//Spell Info
+	attack1SpellInfo: "Tranquility Shot: Attack the enemy for 20 and heal for 10.",
+	attack2SpellInfo: "Beast Enrage: Increase your attack power by 5, and attack the player for 20. ",
+	attack3SpellInfo: "Arcane Shot: You have a 50% chance of landing an attack for 75. ",
+
+
+
 	attack1: function(enemyChar) {
-		var spellName = "tranquilityShot";
+		var spellName = "Tranquility Shot";
 		$("#gameText").text("Attacked the enemy for 20 and healed for 10!");
 
 		var enemyCharObj = eval(enemyChar + "Class");
 		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
-		enemyCharObj.health -= 10;
-		this.health += 10;
+		enemyCharObj.health -= 20;
+		hunterClass.health += 10;
 		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+		$("#hunterHP").html("Hunter: " + hunterClass.health);
+
 
 
 	},
 	attack2: function(enemyChar) {
 		var spellName = "Beast Enrage";
-		$("#gameText").text("You increased your attack power by 10, and attacked the player for 20!");
+		$("#gameText").text("You increased your attack power by 5, and attacked the player for 20!");
 		var enemyCharObj = eval(enemyChar + "Class");
 		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 		enemyCharObj.health -= 20;
-		this.attackPower += 10;
+		hunterClass.attackPower += 5;
 		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
 	},
 	
 	attack3: function(enemyChar) {
+
 		var spellName = "Arcane Shot";
-		var enemyCharObj = eval(enemyChar + "Class");
+		var successHit = Math.floor(Math.random() * 2) + 1
+		var enemyCharObj = eval(enemyChar+ "Class");
 		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 
 
+		if(successHit===1){
+
+			enemyCharObj.health -= 75;
 
 
-		enemyCharObj.health -= 25;
-		$("#gameText").text("You attack the enemy for 25!");
+			$("#gameText").text("You successfully landed Arcane Shot on your enemy for 75 health! (50% chance)");
+			$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
 
-		$("#" + enemyChar + "HP").html(capitalizeEnemy + ": " + enemyCharObj.health);
+
+			return;
+		}else {
+
+			$("#gameText").text("Your Arcane Shot spell missed! (50% chance)");
+			return;
+		}
 
 
 	},
@@ -333,6 +359,16 @@ function displaySpells(charChosen) {
 	$("#attack1").html(attack1);
 	$("#attack2").html(attack2);
 	$("#attack3").html(attack3);
+
+
+
+	var spellInfo1 = charChosenObj.attack1SpellInfo
+	var spellInfo2 = charChosenObj.attack2SpellInfo
+	var spellInfo3 = charChosenObj.attack3SpellInfo
+
+	$("#spellInfo1").html(spellInfo1);
+	$("#spellInfo2").html(spellInfo2);
+	$("#spellInfo3").html(spellInfo3);
 
 
 
@@ -494,10 +530,12 @@ if (typeof charChosen !== "undefined") {
 	if(charClass.health >= 0 && charClass.attackPower >= 0){
 		$("#charHP").html("Your Character health:  " + charClass.health );
 		$("#charAP").html("Your Character attack power: " + charClass.attackPower );
+		$("#charA").html("Your Attack: " + charClass.mainAttack );
 	}else{
 
 		$("#charHP").html("Your Character Health:  ");
 		$("#charAP").html("Your Character Attack Power: ");
+		$("#charA").html("Your Attack: ");
 
 	}
 
@@ -507,6 +545,7 @@ if (typeof charChosen !== "undefined") {
 
 	$("#charHP").html("Your Character Health:  ");
 	$("#charAP").html("Your Character Attack Power: ");
+	$("#charA").html("Your Attack: " );
 
 }
 
@@ -518,11 +557,13 @@ if (typeof enemyChosen !== "undefined" ){
 	if(enemyClass.health >= 0 && enemyClass.attackPower >= 0){
 		$("#enemyHP").html("Enemy Health:  " + enemyClass.health );
 		$("#enemyAP").html("Enemy Attack Power: " + enemyClass.attackPower );
+		$("#enemyA").html("Enemy Attack: " + enemyClass.mainAttack );
 
 	}else{
 
 		$("#enemyHP").html("Enemy Health:  ");
 		$("#enemyAP").html("Enemy Attack Power: ");
+		$("#enemyA").html("Enemy Attack: ");
 
 	}
 
@@ -532,6 +573,7 @@ if (typeof enemyChosen !== "undefined" ){
 
 	$("#enemyHP").html("Enemy Health:  ");
 	$("#enemyAP").html("Enemy Attack Power: ");
+	$("#enemyA").html("Enemy Attack: ");
 
 }
 
@@ -557,7 +599,8 @@ function attack() {
 	//enemy, increasing attack power
 	var enemyHP = "#" + enemyChosen + "HP";
 	var enemyClass = eval(enemyChosen + "Class");
-	enemyClass.mainAttack+=enemyClass.attackPower;
+	enemyClass.attackPower = 5;
+	enemyClass.mainAttack+=5;
 
 
 
@@ -571,7 +614,8 @@ function attack() {
 
 		if(gameActive===true){
 
-			$("#gameText").html("<div> You attaked the enemy for: " + charClass.mainAttack + " damage points! </div>"
+			$("#gameText").html("<div> You attaked the enemy for: " + charClass.mainAttack + " damage points! </div>" 
+				+"<br>"
 			 + "<div> The enemy attacked you for: " + enemyClass.mainAttack + " damage points! </div>");
 
 		}
@@ -589,7 +633,7 @@ function attack() {
 		$(charHP).html(capitalizeChar + ": " + charClass.health);
 
 		charClass.attack1(enemyChosen);
-		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + "damage points! </div>");
+		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + " damage points! </div>");
 
 
 	}else if(spell==="attack2"){
@@ -598,7 +642,7 @@ function attack() {
 		$(charHP).html(capitalizeChar + ": " + charClass.health);
 
 		charClass.attack2(enemyChosen);
-		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + "damage points! </div>");
+		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + " damage points! </div>");
 
 	}else if(spell==="attack3"){
 		var capitalizeChar = charChosen.substr(0,1).toUpperCase()+charChosen.substr(1);
@@ -606,7 +650,7 @@ function attack() {
 		$(charHP).html(capitalizeChar + ": " + charClass.health);
 
 		charClass.attack3(enemyChosen);
-		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + "damage points! </div>");
+		$("#gameText").append("<div> The enemy attacked you for: " + enemyClass.mainAttack + " damage points! </div>");
 
 	}
 
@@ -622,12 +666,25 @@ function attack() {
 		// show game over
 		gameActive = false;
 		$("#gameText").text("You loose! Press enter to play again!");
+		if(enemyClass.health<=0){
+			var defeatedEnemy = enemyChosen;
+			var capitalizeChar = defeatedEnemy.substr(0,1).toUpperCase()+defeatedEnemy.substr(1);
+			$("#" + defeatedEnemy + "HP").html(capitalizeChar + ": Dead");
+		};
+		return;
 	}
 
 
 
 	//If enemy is defeated!
 	if(enemyClass.health<=0){
+		// if(charClass.health<=0) {
+		// 		attackReady=false;
+		// 		// show game over
+		// 		gameActive = false;
+		// 		$("#gameText").text("You loose! Press enter to play again!");
+		// 		return
+		// 			}
 		enemiesRemaining -= 1;
 		attackReady=false;
 		var defeatedEnemy = enemyChosen;
@@ -750,16 +807,16 @@ document.onkeyup = function(event) {
 		//OBJECT VARRIABLES
 
 		//obj health
-		warriorHealth = 140; 
-		mageHealth = 80;
+		warriorHealth = 130; 
+		mageHealth = 100;
 		hunterHealth = 120;
-		rogueHealth = 100;
+		rogueHealth = 110;
 
 		//obj attack power
-		mageAttackPower = 2;
-		hunterAttackPower = 2;
-		rogueAttackPower = 2;
-		warriorAttackPower = 2; 
+		mageAttackPower = 0;
+		hunterAttackPower = 0;
+		rogueAttackPower = 0;
+		warriorAttackPower = 0; 
 
 		//obj main attack
 		mageMainAttack = 1;
@@ -771,23 +828,31 @@ document.onkeyup = function(event) {
 
 
 
-		warriorClass.health = 140;
-		mageClass.health = 80;
+		warriorClass.health = 130;
+		mageClass.health = 100;
 		hunterClass.health = 120;
-		rogueClass.health = 100;
+		rogueClass.health = 110;
 
 
 
-		warriorClass.attackPower = 2;
-		mageClass.attackPower = 2;
-		hunterClass.attackPower = 2;
-		rogueClass.attackPower = 2;
+		warriorClass.attackPower = 0;
+		mageClass.attackPower = 0;
+		hunterClass.attackPower = 0;
+		rogueClass.attackPower = 0;
 
 
 		warriorClass.mainAttack = 1;
 		mageClass.mainAttack = 1;
 		hunterClass.mainAttack = 1;
 		rogueClass.mainAttack = 1;
+
+
+
+		//Spell info panel 
+		$("#spellInfo1").html("");
+		$("#spellInfo2").html("");
+		$("#spellInfo3").html("");
+
 
 
 
