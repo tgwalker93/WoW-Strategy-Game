@@ -417,7 +417,6 @@ $( "#mage" ).on("click", function() {
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
-	//updateStats();
 	return;
 
 
@@ -437,7 +436,6 @@ $( "#hunter" ).on("click", function() {
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
-	//updateStats();
 	return;
 
 
@@ -678,35 +676,22 @@ function attack() {
 
 	//If enemy is defeated!
 	if(enemyClass.health<=0){
-		// if(charClass.health<=0) {
-		// 		attackReady=false;
-		// 		// show game over
-		// 		gameActive = false;
-		// 		$("#gameText").text("You loose! Press enter to play again!");
-		// 		return
-		// 			}
 		enemiesRemaining -= 1;
 		attackReady=false;
 		var defeatedEnemy = enemyChosen;
 		var capitalizeChar = defeatedEnemy.substr(0,1).toUpperCase()+defeatedEnemy.substr(1);
 		$("div").off("click");
 		$("#gameText").text("You defeated the " + defeatedEnemy + " class. Please choose another enemy to fight!");
-		//$("#" + defeatedEnemy).css("visibility", "hidden");
 		$("#" + defeatedEnemy + "HP").html(capitalizeChar + ": Dead");
 		chooseEnemy();
-
 		if(enemiesRemaining===0) {
 			attackReady=false;
 			// show game over
 			gameActive = false;
 			$("#gameText").text("You win! Press enter to play again!");
-			// restartGame();
-			}//else{
-				//$("div").off("click");
-				//chooseEnemy();
-				//return;
 
-	//}
+			}
+
 		return;
 	}
 
