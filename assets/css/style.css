@@ -2,6 +2,13 @@ html {
   height: 100%;
   zoom: 52%;
 }
+
+#title {
+  font-size: 100px;
+  text-align: center;
+  color: white;
+  margin-bottom: 50px;
+}
 body {
   min-height: 100%;
   overflow-x:hidden;
@@ -42,6 +49,9 @@ button {
   font-size: 30px;
 
 
+}
+#howToText {
+  font-size: 30px;
 }
 
 
