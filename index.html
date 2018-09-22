@@ -91,7 +91,13 @@
 
         	<h3 id="warriorHP">Warrior: 130</h3>
       	</div>
-
+		  <div class="health-bar" data-total="1000" data-value="1000">
+			<div class="bar">
+				  <div class="hit"></div>
+			</div>
+		  </div>
+	
+		  
     </div>
 
 
@@ -211,11 +217,17 @@
    <div id="fight"> <h1 class="panel-title">Fight Section</h1> </div>
   </div>
   <div class="panel-body">
-    <div id="fightArea"> 
-		<button id="attack" type="button" class="btn btn-outline-primary">Attack</button>
-		<button id="attack1" type="button" class="btn btn-outline-primary">Spell Slot 1</button>
-		<button id="attack2" type="button" class="btn btn-outline-primary">Spell Slot 2</button>
-		<button id="attack3" type="button" class="btn btn-outline-primary">Spell Slot 3</button>
+    <div id="fightArea">
+			<button class="damage random">hit random</button>
+			<button class="reset">reset</button>
+			
+			<div class="log">
+			  <div>What's going on...</div>
+			</div> 
+		<button id="attack" type="button" class="btn btn-outline-primary damage random">Attack</button>
+		<button id="attack1" type="button" class="btn btn-outline-primary damage random">Spell Slot 1</button>
+		<button id="attack2" type="button" class="btn btn-outline-primary damage random">Spell Slot 2</button>
+		<button id="attack3" type="button" class="btn btn-outline-primary damage random">Spell Slot 3</button>
 	</div>
   </div>
 	</div>
