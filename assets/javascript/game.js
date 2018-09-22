@@ -420,6 +420,8 @@ $( "#warrior" ).on("click", function() {
 	updateStats();
 	displaySpells(charChosen);
 	var index = charList.indexOf(charChosen);
+	var charElement = eval(charChosen + "Class");
+	$(charElement).data("isChosen", "True");
 	charList.splice(index, 1);
 	$("div").off("click");
 	chooseEnemy();
@@ -439,6 +441,8 @@ $( "#mage" ).on("click", function() {
 	charChosen = charList[1];
 	updateStats();
 	displaySpells(charChosen);
+	var charElement = eval(charChosen + "Class");
+	$(charElement).data("isChosen", "True");
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
@@ -458,6 +462,8 @@ $( "#hunter" ).on("click", function() {
 	charChosen = charList[2];
 	updateStats();
 	displaySpells(charChosen);
+	var charElement = eval(charChosen + "Class");
+	$(charElement).data("isChosen", "True");
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
@@ -477,6 +483,8 @@ $( "#rogue" ).on("click", function() {
 	charChosen = charList[3];
 	updateStats();
 	displaySpells(charChosen);
+	var charElement = eval(charChosen + "Class");
+	$(charElement).data("isChosen", "True");
 	var index = charList.indexOf(charChosen);
 	charList.splice(index, 1);
 	$("div").off("click");
@@ -499,6 +507,8 @@ $( "#" + charList[0] ).on("click", function() {
 	updateStats();
 	$("#gameText").text("You chose an enemy out of the three. Now click a spell to attack!");
 	var index = charList.indexOf(enemyChosen);
+	var charElement = eval(enemyChosen + "Class");
+	$(charElement).data("isEnemy", "True");
 	charList.splice(index, 1);
 	attackReady = true;
 	$("div").off("click");
@@ -512,6 +522,8 @@ $( "#" + charList[1] ).on("click", function() {
 	updateStats();
 	$("#gameText").text("You chose an enemy out of the three. Now click a spell to attack!");
 	var index = charList.indexOf(enemyChosen);
+	var charElement = eval(enemyChosen + "Class");
+	$(charElement).data("isEnemy", "True");
 	charList.splice(index, 1);
 	attackReady = true;
 	$("div").off("click");
@@ -527,6 +539,8 @@ $( "#" + charList[2] ).on("click", function() {
 	updateStats();
 	$("#gameText").text("You chose an enemy out of the three. Now click a spell to attack!");
 	var index = charList.indexOf(enemyChosen);
+	var charElement = eval(enemyChosen + "Class");
+	$(charElement).data("isEnemy", "True");
 	charList.splice(index, 1);
 	attackReady = true;
 	$("div").off("click");
@@ -903,6 +917,11 @@ chooseCharacter();
 });
 
 //HealthBar Logic
+$(".classCard").on("click", function() {
+	console.log("Class Clicked");
+	selectCard = $(this);
+	console.log(selectCard.attr(isChosen));
+})
 var hitBtn = $('button.damage'),
 reset = $('button.reset'),
 hBar = $('.health-bar'),
