@@ -85,7 +85,7 @@
 
  					<div id="characterArea"> 
 
-	<div id="warrior" class="col-md-3 classCard">	
+	<div id="warrior" class="col-md-3 classCard" data-isEnemy="False" data-isChosen="False">	
 		<h3 id="warriorTitle" class="classTitle">Warrior</h3>
 		<div class="work">
     		<img src="assets/images/warrior.jpg" alt="Warrior">
@@ -93,9 +93,9 @@
 
       	</div>
 		
-		<div id="warriorHealth" class="health-bar" data-total="1000" data-value="1000" data-isEnemy="False" data-isChosen="False">
+		<div id="warriorHealth" class="health-bar" data-total="1000" data-value="1000">
 			<div class="bar">
-				<span class="hpNum"> 130 </span>
+				<span id="warriorHPNum" class="hpNum"> 130 </span>
 				<div class="hit"></div>
 			</div>
 		</div>
@@ -104,7 +104,7 @@
 
 
 
-      	<div id="mage" class="col-sm-3 classCard">	
+      	<div id="mage" class="col-sm-3 classCard" data-isEnemy="False" data-isChosen="False">	
 
 			<h3 id="mageTitle" class="classTitle">Mage</h3>
 
@@ -113,10 +113,10 @@
 
 			</div>
 		  
-			<div id="mageHealth" class="health-bar" data-total="1000" data-value="1000" data-isEnemy="False" data-isChosen="False">
+			<div id="mageHealth" class="health-bar" data-total="1000" data-value="1000">
 				<div class="bar">
 
-					<span class="hpNum"> 100 </span>
+					<span id="mageHPNum" class="hpNum"> 100 </span>
 					<div class="hit"></div>
 				</div>
 			</div>
@@ -125,7 +125,7 @@
 
 
 
-      <div id ="hunter" class="col-sm-3 classCard">
+      <div id ="hunter" class="col-sm-3 classCard" data-isEnemy="False" data-isChosen="False">
 
 			<h3 id="hunterTitle" class="classTitle">Hunter</h3>
 
@@ -133,9 +133,9 @@
 			<img src="assets/images/hunter.jpg" alt="Hunter">
 			</div>
 
-			<div id="hunterHealth" class="health-bar" data-total="1000" data-value="1000" data-isEnemy="False" data-isChosen="False" >
+			<div id="hunterHealth" class="health-bar" data-total="1000" data-value="1000">
 				<div class="bar">
-					<span class="hpNum"> 120 </span>
+					<span id="hunterHPNum" class="hpNum"> 120 </span>
 					<div class="hit"></div>
 				</div>
 			</div>
@@ -144,19 +144,19 @@
 
 
 
-      <div id="rogue" class="col-sm-3 classCard">
+      <div id="rogue" class="col-sm-3 classCard" data-isEnemy="False" data-isChosen="False">
 
 		<h3 id="rogueTitle" class="classTitle">Rogue</h3>
 		  <div class="work">
 		    <img src="assets/images/rogue.jpg" alt="Rogue">
 		  </div>
 
-			<div id="rogueHealth" class="health-bar" data-total="1000" data-value="1000" data-isEnemy="False" data-isChosen="False">
+			<div id="rogueHealth" class="health-bar" data-total="1000" data-value="1000">
 
 				
 
 				<div class="bar">
-					<span class="hpNum"> 110 </span>
+					<span id="rogueHPNum" class="hpNum"> 110 </span>
 					<div class="hit"></div>
 				</div>
 				

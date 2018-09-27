@@ -560,13 +560,14 @@ $( "#" + charList[2] ).on("click", function() {
 function updateStats() {
 
 //UPDATE STATS!!! 
-
+console.log("Char CHosen is: " + charChosen);
 if (typeof charChosen !== "undefined") {
 	var charClass = eval(charChosen + "Class");
 
 
 	if(charClass.health >= 0 && charClass.attackPower >= 0){
 		$("#charHP").html("Your Character health:  " + charClass.health );
+		$("#"+charChosen + "HPNum").html(charClass.health);
 		$("#charAP").html("Your Character attack power: " + charClass.attackPower );
 		$("#charA").html("Your Attack: " + charClass.mainAttack );
 	}else{
@@ -580,7 +581,7 @@ if (typeof charChosen !== "undefined") {
 
 
 } else {
-
+	console.log("Char Chosen is undefined")
 	$("#charHP").html("Your Character Health:  ");
 	$("#charAP").html("Your Character Attack Power: ");
 	$("#charA").html("Your Attack: " );
@@ -594,6 +595,7 @@ if (typeof enemyChosen !== "undefined" ){
 	var enemyClass = eval(enemyChosen + "Class");
 	if(enemyClass.health >= 0 && enemyClass.attackPower >= 0){
 		$("#enemyHP").html("Enemy Health:  " + enemyClass.health );
+		$("#" + enemyChosen + "HPNum").html(enemyClass.health);
 		$("#enemyAP").html("Enemy Attack Power: " + enemyClass.attackPower );
 		$("#enemyA").html("Enemy Attack: " + enemyClass.mainAttack );
 
@@ -622,24 +624,22 @@ if (typeof enemyChosen !== "undefined" ){
 
 };
 
-
+//MAIN ATTACK LOGIC IS HANDLED HERE
 function attack() {
-
-
-
+	
 	//your Character, increasing attack power
 	var charHP = "#" + charChosen + "HP";
 	var charClass = eval(charChosen + "Class");
 	charClass.mainAttack+=charClass.attackPower;
 
-
+	decreaseHealthBar(charClass.mainAttack, charChosen);
 
 	//enemy, increasing attack power
 	var enemyHP = "#" + enemyChosen + "HP";
 	var enemyClass = eval(enemyChosen + "Class");
 	enemyClass.attackPower = 5;
 	enemyClass.mainAttack+=5;
-
+	decreaseHealthBar(enemyClass.mainAttack, enemyChosen);
 
 
 
@@ -692,7 +692,7 @@ function attack() {
 
 	}
 
-
+	
 	spell = "attack";
 
 	updateStats();
@@ -920,11 +920,15 @@ chooseCharacter();
 $(".classCard").on("click", function() {
 	console.log("Class Clicked");
 	selectCard = $(this);
-	console.log(selectCard.attr(isChosen));
+	selectCard.attr("data-isChosen", "True");
+	console.log(selectCard.attr("data-isChosen"));
 })
+
+function decreaseHealthBar(damage, charName){
+
 var hitBtn = $('button.damage'),
 reset = $('button.reset'),
-hBar = $('.health-bar'),
+hBar = $("#"+charName + "Health"),
 bar = hBar.find('.bar'),
 hit = hBar.find('.hit');
 
@@ -933,11 +937,11 @@ var total = hBar.data('total'),
   value = hBar.data('value');
 
 if (value < 0) {
-	  log("you dead, reset");
+	  console.log(charName + " has died.");
 return;
 }
 // max damage is essentially quarter of max life
-var damage = Math.floor(Math.random()*total);
+// var damage = Math.floor(Math.random()*total);
 // damage = 100;
 var newValue = value - damage;
 // calculate the percentage of the total width
@@ -954,11 +958,11 @@ bar.css('width', barWidth + "%");
 }, 500);
 //bar.css('width', total - value);
 
-log(value, damage, hitWidth);
+//log(value, damage, hitWidth);
 
-if( value < 0){
-log("DEAD");
-}
+// if( value < 0){
+// log("DEAD");
+// }
 });
 
 reset.on('click', function(e){
@@ -970,3 +974,4 @@ hit.css({'width': '0'});
   log("resetting health to 1000");
 });
 
+}
