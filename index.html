@@ -36,7 +36,7 @@
 
 
 
-
+			<p id="gameText"></p>
 
 <div class="w3-container"> 
 
@@ -93,10 +93,10 @@
 
       	</div>
 		
-		<div id="warriorHealth" class="health-bar" data-total="1000" data-value="1000">
-			<div class="bar">
+		<div id="warriorHealth" class="health-bar" data-total="130" data-value="130">
+			<div id="warriorbar" class="bar">
 				<span id="warriorHPNum" class="hpNum"> 130 </span>
-				<div class="hit"></div>
+				<div id="warriorhit" class="hit"></div>
 			</div>
 		</div>
 		  
@@ -113,11 +113,11 @@
 
 			</div>
 		  
-			<div id="mageHealth" class="health-bar" data-total="1000" data-value="1000">
-				<div class="bar">
+			<div id="mageHealth" class="health-bar" data-total="100" data-value="100">
+				<div id="magebar" class="bar">
 
 					<span id="mageHPNum" class="hpNum"> 100 </span>
-					<div class="hit"></div>
+					<div id="magehit" class="hit"></div>
 				</div>
 			</div>
 
@@ -133,10 +133,10 @@
 			<img src="assets/images/hunter.jpg" alt="Hunter">
 			</div>
 
-			<div id="hunterHealth" class="health-bar" data-total="1000" data-value="1000">
-				<div class="bar">
+			<div id="hunterHealth" class="health-bar" data-total="120" data-value="120">
+				<div id="hunterbar" class="bar">
 					<span id="hunterHPNum" class="hpNum"> 120 </span>
-					<div class="hit"></div>
+					<div id="hunterhit" class="hit"></div>
 				</div>
 			</div>
 
@@ -151,13 +151,13 @@
 		    <img src="assets/images/rogue.jpg" alt="Rogue">
 		  </div>
 
-			<div id="rogueHealth" class="health-bar" data-total="1000" data-value="1000">
+			<div id="rogueHealth" class="health-bar" data-total="110" data-value="110">
 
 				
 
-				<div class="bar">
+				<div id="roguebar" class="bar">
 					<span id="rogueHPNum" class="hpNum"> 110 </span>
-					<div class="hit"></div>
+					<div id="roguehit" class="hit"></div>
 				</div>
 				
 			</div>
@@ -322,7 +322,6 @@
 
 			<button id="myBtn">How To Play</button>
    		<!-- <p id="gameText"> How to play: Each character has a set of 3 spells on top of their original attack.  Each character has health and attack power. Attack power will always represent how much extra damage your character's "attack" spell will do to the enemy. Attack power will naturally increase every round. Please note, your attack power only affects the "attack" slot and not your 3 spell slots. Each spell will do something different, and every class has 3 unique spells. After you select a character, you must defeat the other three characters. After you defeat an enemy, the new enemy attack power will reset back to 0. Enemy attack power constantly grows. However, your character attack power stays the same. You have to find the right time, after building enough attack power, to start using your attack. Every class has atleast one spell that increases attack power. Using attack is essential to winning the game. Select your character to begin! </p> -->
-
 
 		<div id="gameArea"> </div>
   </div>
