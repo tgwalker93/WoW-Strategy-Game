@@ -5,7 +5,13 @@ $(document).ready(function() {
 
 var charList = ["warrior", "mage", "hunter", "rogue"];
 
+var charMaxHealthList = {
+	warrior: 130,
+	mage:100,
+	hunter:120,
+	rogue:110
 
+}
 var charChosen;
 var enemyChosen;
 
@@ -385,8 +391,8 @@ function displaySpells(charChosen) {
 	$("#attack1").html(attack1);
 	$("#attack2").html(attack2);
 	$("#attack3").html(attack3);
-
-
+	// $(".btn::before").css("content", "TESTTESTTEST");
+	$("head").append("<style>.btn:before{content:'"+charChosenObj.attack1SpellInfo+"' !important;}</style>");
 
 	var spellInfo1 = charChosenObj.attack1SpellInfo
 	var spellInfo2 = charChosenObj.attack2SpellInfo
@@ -563,7 +569,9 @@ function updateStats() {
 if (typeof charChosen !== "undefined") {
 	var charClass = eval(charChosen + "Class");
 
-
+	if (charClass.health < 0) {
+    charClass.health = 0;
+  }
 	// if(charClass.health >= 0 && charClass.attackPower >= 0){
 		$("#charHP").html("Your Character health:  " + charClass.health );
 		$("#"+charChosen + "HPNum").html(charClass.health);
@@ -580,12 +588,11 @@ if (typeof charChosen !== "undefined") {
 
 
 } else {
-	$("#charHP").html("Your Character Health:  ");
-	$("#charAP").html("Your Character Attack Power: ");
-	$("#charA").html("Your Attack: " );
+	$("#charHP").html("Your Character Health: 0 ");
+	$("#charAP").html("Your Character Attack Power: 0");
+	$("#charA").html("Your Attack: 0" );
 
 }
-
 
 
 
@@ -629,27 +636,24 @@ function attack() {
 	var charHP = "#" + charChosen + "HP";
 	var charClass = eval(charChosen + "Class");
 	charClass.mainAttack+=charClass.attackPower;
-	console.log(gameActive);
-	if(gameActive == true){
 
-	decreaseHealthBar(charClass.mainAttack, charChosen);
-	}
 	//enemy, increasing attack power
 	var enemyHP = "#" + enemyChosen + "HP";
 	var enemyClass = eval(enemyChosen + "Class");
 	enemyClass.attackPower = 5;
 	enemyClass.mainAttack+=5;
 
-	if(gameActive == true){
-	decreaseHealthBar(enemyClass.mainAttack, enemyChosen);
+
+
+	if (charClass.health < 0) {
+
+		charClass.health = 0;
 
 	}
 
-
-
-
 	//ATTACK LOGIC!!
 	if(spell==="attack") {
+
 
 		enemyClass.health -= charClass.mainAttack;
 		charClass.health -= enemyClass.mainAttack;
@@ -696,10 +700,26 @@ function attack() {
 
 	}
 
+	if(charClass.health < 0){
+		
+		charClass.health = 0;
+
+	}
+
 	
 	spell = "attack";
 
 	updateStats();
+
+
+
+	//Decreasing HealthBars
+	if (gameActive == true) {
+		decreaseHealthBar(charClass.mainAttack, enemyChosen);
+	}
+	if (gameActive == true) {
+		decreaseHealthBar(enemyClass.mainAttack, charChosen);
+	}
 
 
 	//if you loose the game! 
@@ -723,6 +743,8 @@ function attack() {
 		enemiesRemaining -= 1;
 		attackReady=false;
 		var defeatedEnemy = enemyChosen;
+		enemyMaxHealth = charMaxHealthList[defeatedEnemy];
+		$("#" + enemyChosen + "HPNum").html(enemyMaxHealth);
 		var capitalizeChar = defeatedEnemy.substr(0,1).toUpperCase()+defeatedEnemy.substr(1);
 		$("div").off("click");
 		$("#gameText").text("You defeated the " + defeatedEnemy + " class. Please choose another enemy to fight!");
@@ -924,8 +946,8 @@ document.onkeyup = function(event) {
 			var total = hBar.data('total'),
 				value = hBar.data('value');
 
+
 			if (value <= 0) {
-				console.log(charName + " has died.");
 				return;
 			}
 			// max damage is essentially quarter of max life
@@ -936,6 +958,10 @@ document.onkeyup = function(event) {
 			var barWidth = (newValue / total) * 100;
 			var hitWidth = (damage / value) * 100 + "%";
 
+		console.log(charName);
+			console.log("value: " + value);
+			console.log("damage: " + damage);
+			console.log("total: " + total);
 			// show hit bar and set the width
 			hit.css('width', hitWidth);
 			hBar.data('value', newValue);
@@ -964,6 +990,10 @@ document.onkeyup = function(event) {
 
 	}
 	function resetHealthBars(){
+		charMaxHealth = charMaxHealthList[charChosen];
+		enemyMaxHealth = charMaxHealthList[enemyChosen];
+		$("#" + charChosen + "HPNum").html(charMaxHealth);
+		$("#" + enemyChosen + "HPNum").html(enemyMaxHealth);
 		var hBar = $('.health-bar'),
 			bar = hBar.find('.bar'),
 			hit = hBar.find('.hit');

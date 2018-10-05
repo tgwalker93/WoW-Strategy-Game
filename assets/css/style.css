@@ -1,4 +1,69 @@
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+.btn {
+  position: relative;
+  background-color: #238f4e;
+  display: inline-block;
+  height: 60px;
+  width: 200px;
+  border-radius: 50em;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  margin: 30px;
+}
+
+.btn::before,
+.btn::after {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.btn::before {
+  content: 'File Size: 5mb';
+  width: auto;
+  height: 60px;
+  background: rgb(255, 255, 255);
+  border-radius: 0.25em;
+  bottom: 90px;
+  line-height: 60px;
+  left: calc(50% - 80px);
+  font-size: 15px;
+}
+
+.btn::after {
+  content: '';
+  width: 0px;
+  height: 0px;
+  border: 10px solid transparent;
+  border-top-color: #0E84A1;
+  bottom: 70px;
+  left: calc(50% - 10px);
+}
+
+.btn:hover::before,
+.btn:hover::after,
+.btn.hover::before,
+.btn.hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn:hover::before,
+.btn.hover::before {
+  bottom: 80px;
+}
+
+.btn:hover::after,
+.btn.hover::after {
+  bottom: 60px;
+}
+
+
 .classTitle {
   text-align: center;
   font-size:30px;
@@ -7,7 +72,10 @@
 .hpNum {
   color: #000;
 }
+#attack1, #attack2, #attack3 {
 
+  /* display: none; */
+}
 #warriorTitle {
   color: #c96;
 }
