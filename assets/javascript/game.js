@@ -30,16 +30,16 @@ var hunterHealth = 120;
 var rogueHealth = 110;
 
 //obj attack power
-var mageAttackPower = 0;
-var hunterAttackPower = 0;
-var rogueAttackPower = 0;
-var warriorAttackPower = 0; 
+var mageAttackPower = 1;
+var hunterAttackPower = 1;
+var rogueAttackPower = 1;
+var warriorAttackPower = 1; 
 
 //obj main attack
-var mageMainAttack = 1;
-var hunterMainAttack = 1;
-var rogueMainAttack = 1;
-var warriorMainAttack = 1; 
+var mageMainAttack = 0;
+var hunterMainAttack = 0;
+var rogueMainAttack = 0;
+var warriorMainAttack = 0; 
 
 // END OBJECT VARIABLES
 
@@ -86,9 +86,9 @@ var rogueClass = {
 	attack3SpellName: "Combo Strike",
 
 	//Spell Info
-	attack1SpellInfo: "Backstab: 25% chance to attack the enemy for 130. ",
-	attack2SpellInfo: "Poison Blade: Increase your attack power by 10. ",
-	attack3SpellInfo: "Combo Strike: Increase your attack power by 5 and attack the enemy for 15. ",
+	attack1SpellInfo: "25% chance to attack the enemy for 130. ",
+	attack2SpellInfo: "Increase your attack power by 10. ",
+	attack3SpellInfo: "Increase your attack power by 5 and attack the enemy for 15. ",
 
 
 	attack1: function(enemyChar) {
@@ -156,9 +156,9 @@ var mageClass = {
 	attack3SpellName: "Arcane Brilliance",
 
 	//Spell Info
-	attack1SpellInfo: "Frostbolt: You attack your enemy for 20 and increase your attack power by 5",
-	attack2SpellInfo: "Fire Nova: Blast all enemies for 20 damage but you lose 5 health.",
-	attack3SpellInfo: "Arcane Brilliance: Increase your attack power by 10 and health by 10.",
+	attack1SpellInfo: "You attack your enemy for 20 and increase your attack power by 5",
+	attack2SpellInfo: "Blast all enemies for 20 damage but you lose 5 health.",
+	attack3SpellInfo: "Increase your attack power by 10 and health by 10.",
 
 	attack1: function(enemyChar) {
 	var spellName = "Frostbolt";
@@ -229,9 +229,9 @@ var warriorClass = {
 
 
 	//Spell Info
-	attack1SpellInfo: "Cleave: Deal 10 damage to all enemies. ",
-	attack2SpellInfo: "Enrage: Attack your enemy for 30 but you lose 10 health. ",
-	attack3SpellInfo: "Shield Slam: You attack your enemy for 10 and you gain 5 attack power. ",
+	attack1SpellInfo: "Deal 10 damage to all enemies. ",
+	attack2SpellInfo: "Attack your enemy for 30 but you lose 10 health. ",
+	attack3SpellInfo: "You attack your enemy for 10 and you gain 5 attack power. ",
 
 
 
@@ -317,9 +317,9 @@ var hunterClass = {
 
 
 	//Spell Info
-	attack1SpellInfo: "Tranquility Shot: Attack the enemy for 20 and heal for 10.",
-	attack2SpellInfo: "Beast Enrage: Increase your attack power by 5, and attack the player for 20. ",
-	attack3SpellInfo: "Arcane Shot: You have a 50% chance of landing an attack for 75. ",
+	attack1SpellInfo: "Attack the enemy for 20 and heal for 10.",
+	attack2SpellInfo: "Increase your attack power by 5, and attack the player for 20. ",
+	attack3SpellInfo: "You have a 50% chance of landing an attack for 75. ",
 
 
 
@@ -392,7 +392,9 @@ function displaySpells(charChosen) {
 	$("#attack2").html(attack2);
 	$("#attack3").html(attack3);
 	// $(".btn::before").css("content", "TESTTESTTEST");
-	$("head").append("<style>.btn:before{content:'"+charChosenObj.attack1SpellInfo+"' !important;}</style>");
+	$("head").append("<style>#attack1:before{content:'" + charChosenObj.attack1SpellInfo + "' !important;}\n#attack1{visibility:visible !important;}</style>");
+	$("head").append("<style>#attack2:before{content:'" + charChosenObj.attack2SpellInfo + "' !important;}\n#attack2{visibility:visible !important;}</style>");
+	$("head").append("<style>#attack3:before{content:'" + charChosenObj.attack3SpellInfo + "' !important;}\n#attack3{visibility:visible !important;}</style>");
 
 	var spellInfo1 = charChosenObj.attack1SpellInfo
 	var spellInfo2 = charChosenObj.attack2SpellInfo
@@ -585,6 +587,7 @@ if (typeof charChosen !== "undefined") {
 
 	// }
 
+	$("#" + charChosen + "AttackPower").html("Attack Power: " + charClass.attackPower);
 
 
 } else {
@@ -598,11 +601,13 @@ if (typeof charChosen !== "undefined") {
 
 if (typeof enemyChosen !== "undefined" ){
 	var enemyClass = eval(enemyChosen + "Class");
+	$("#" + charChosen + "AttackPower").html("Attack Power: " + charClass.attackPower);
 	if(enemyClass.health >= 0 && enemyClass.attackPower >= 0){
 		$("#enemyHP").html("Enemy Health:  " + enemyClass.health );
 		$("#" + enemyChosen + "HPNum").html(enemyClass.health);
 		$("#enemyAP").html("Enemy Attack Power: " + enemyClass.attackPower );
 		$("#enemyA").html("Enemy Attack: " + enemyClass.mainAttack );
+
 
 	}else{
 

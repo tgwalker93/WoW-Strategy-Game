@@ -9,7 +9,7 @@
   background-color: #238f4e;
   display: inline-block;
   height: 60px;
-  width: 200px;
+  width: auto !important;
   border-radius: 50em;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   margin: 30px;
@@ -24,7 +24,7 @@
 }
 
 .btn::before {
-  content: 'File Size: 5mb';
+  content: 'Attacks Enemy with damge equal to your attack power.';
   width: auto;
   height: 60px;
   background: rgb(255, 255, 255);
@@ -32,17 +32,30 @@
   bottom: 90px;
   line-height: 60px;
   left: calc(50% - 80px);
-  font-size: 15px;
+  font-size: 30px;
+  padding: 0px 10px 0px 10px;
+}
+#attack1 {
+ visibility: hidden;
+}
+#attack2 {
+  visibility: hidden;
+
+}
+#attack3 {
+visibility: hidden;
+
 }
 
 .btn::after {
   content: '';
   width: 0px;
   height: 0px;
-  border: 10px solid transparent;
+  border:none;
+  /* border: 10px solid transparent;
   border-top-color: #0E84A1;
   bottom: 70px;
-  left: calc(50% - 10px);
+  left: calc(50% - 10px); */
 }
 
 .btn:hover::before,
