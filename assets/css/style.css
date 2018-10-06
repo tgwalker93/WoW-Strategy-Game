@@ -1,4 +1,33 @@
+#gameTextContainer {
+  padding-left: 20%;
+}
+#mainRow {
+  margin-right: 200px;
+  margin-left: 200px;
+}
+.attackPower {
+  font-size: 20px;
+}
+.classCard {
+  width: 245px;
+  border: 1px solid;
+  margin: 5px;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+#warrior {
+  background-color: #c96;
+}
+#rogue {
+  background-color: #ff6;
+}
+#mage {
+  background-color: #5dc4ed;
+}
+#hunter {
+  background-color: #87cd73;
 
+}
 *,
 *::after,
 *::before {
@@ -90,16 +119,16 @@ visibility: hidden;
   /* display: none; */
 }
 #warriorTitle {
-  color: #c96;
+  /* color: #c96; */
 }
 #mageTitle {
-  color: #5dc4ed;
+  /* color: #5dc4ed; */
 }
 #hunterTitle {
-  color: #87cd73;
+  /* color: #87cd73; */
 }
 #rogueTitle {
-  color:#ff6
+  /* color:#ff6 */
 }
 .health-bar {
   -webkit-box-sizing: border-box;
@@ -191,7 +220,7 @@ button {
     background-color: black;
     padding: 10px;
     margin-bottom: 50px;
-
+    display: inline-block;
 
 }
 #howToText {
@@ -364,9 +393,7 @@ button {
 
 
 
-.row {
-  margin-left: 1%;
-}
+
 
 
 @media (min-width: 992px) {

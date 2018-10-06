@@ -575,10 +575,10 @@ if (typeof charChosen !== "undefined") {
     charClass.health = 0;
   }
 	// if(charClass.health >= 0 && charClass.attackPower >= 0){
-		$("#charHP").html("Your Character health:  " + charClass.health );
-		$("#"+charChosen + "HPNum").html(charClass.health);
-		$("#charAP").html("Your Character attack power: " + charClass.attackPower );
-		$("#charA").html("Your Attack: " + charClass.mainAttack );
+		// $("#charHP").html("Your Character health:  " + charClass.health );
+		// $("#"+charChosen + "HPNum").html(charClass.health);
+		// $("#charAP").html("Your Character attack power: " + charClass.attackPower );
+		// $("#charA").html("Your Attack: " + charClass.mainAttack );
 	// }else{
 
 	// 	$("#charHP").html("Your Character Health:  ");
@@ -591,9 +591,9 @@ if (typeof charChosen !== "undefined") {
 
 
 } else {
-	$("#charHP").html("Your Character Health: 0 ");
-	$("#charAP").html("Your Character Attack Power: 0");
-	$("#charA").html("Your Attack: 0" );
+	// $("#charHP").html("Your Character Health: 0 ");
+	// $("#charAP").html("Your Character Attack Power: 0");
+	// $("#charA").html("Your Attack: 0" );
 
 }
 
@@ -603,17 +603,17 @@ if (typeof enemyChosen !== "undefined" ){
 	var enemyClass = eval(enemyChosen + "Class");
 	$("#" + charChosen + "AttackPower").html("Attack Power: " + charClass.attackPower);
 	if(enemyClass.health >= 0 && enemyClass.attackPower >= 0){
-		$("#enemyHP").html("Enemy Health:  " + enemyClass.health );
+		// $("#enemyHP").html("Enemy Health:  " + enemyClass.health );
 		$("#" + enemyChosen + "HPNum").html(enemyClass.health);
-		$("#enemyAP").html("Enemy Attack Power: " + enemyClass.attackPower );
-		$("#enemyA").html("Enemy Attack: " + enemyClass.mainAttack );
+		// $("#enemyAP").html("Enemy Attack Power: " + enemyClass.attackPower );
+		// $("#enemyA").html("Enemy Attack: " + enemyClass.mainAttack );
 
 
 	}else{
 
-		$("#enemyHP").html("Enemy Health:  ");
-		$("#enemyAP").html("Enemy Attack Power: ");
-		$("#enemyA").html("Enemy Attack: ");
+		// $("#enemyHP").html("Enemy Health:  ");
+		// $("#enemyAP").html("Enemy Attack Power: ");
+		// $("#enemyA").html("Enemy Attack: ");
 
 	}
 
@@ -621,9 +621,9 @@ if (typeof enemyChosen !== "undefined" ){
 
 } else {
 
-	$("#enemyHP").html("Enemy Health:  ");
-	$("#enemyAP").html("Enemy Attack Power: ");
-	$("#enemyA").html("Enemy Attack: ");
+	// $("#enemyHP").html("Enemy Health:  ");
+	// $("#enemyAP").html("Enemy Attack Power: ");
+	// $("#enemyA").html("Enemy Attack: ");
 
 }
 
@@ -660,12 +660,12 @@ function attack() {
 	if(spell==="attack") {
 
 
-		enemyClass.health -= charClass.mainAttack;
+		enemyClass.health -= charClass.attackPower;
 		charClass.health -= enemyClass.mainAttack;
 
 		if(gameActive===true){
 
-			$("#gameText").html("<div> You attaked the enemy for: " + charClass.mainAttack + " damage points! </div>" 
+			$("#gameText").html("<div> You attaked the enemy for: " + charClass.attackPower + " damage points! </div>" 
 				+"<br>"
 			 + "<div> The enemy attacked you for: " + enemyClass.mainAttack + " damage points! </div>");
 

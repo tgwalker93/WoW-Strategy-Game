@@ -31,14 +31,14 @@
     <p class="lead"></p>
   </div>
 </div> -->
-<h1 id="title"> World of Warcraft RPG Game</h1>
+<h1 id="title"> World of Warcraft Strategy Game</h1>
+<button id="myBtn">How To Play</button>
 
 
 
 
-			<p id="gameText"></p>
 
-<div class="w3-container"> 
+<div class="container-fluid">
 
 	<!-- The Modal -->
 	<div id="modal" class="modal">
@@ -67,9 +67,15 @@
 
 <!-- BIG FIRST COLUMN -->
 <div class="row" id="mainRow">
-<div class="col-sm-6">
+<div class="col-sm-12">
 
-
+<div class="row">
+	<div class="col-sm-12">
+		<div id="gameTextContainer">
+			<p id="gameText"></p>
+		</div>
+	</div>
+</div>
 
 <div class="row">	
 <div class="col-sm-12">	
@@ -169,7 +175,7 @@
 				
 			</div>
 			<div id="rogueAttackPower" class="attackPower">
-				Attack Power: 1
+				Attack Power: 1 
 			</div>
       </div>
 			</div>
@@ -303,127 +309,17 @@
 
 
 
-<!-- END OF FIRST COLUMN CONTAINER ROW  -->		
-			</div>
 
 
 
 
-<!-- MAIN COLUMN TO THE RIGHT  -->
-<div class="col-sm-4">	
 
 
-<!-- FIRST ROW SECOND COLUMN  -->
-<div class="row">
-	<div class="col-sm-12">	
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h1 class="panel-title">Game Text</h1>
-  </div>
-  <div class="panel-body">
-
-			<button id="myBtn">How To Play</button>
-   		<!-- <p id="gameText"> How to play: Each character has a set of 3 spells on top of their original attack.  Each character has health and attack power. Attack power will always represent how much extra damage your character's "attack" spell will do to the enemy. Attack power will naturally increase every round. Please note, your attack power only affects the "attack" slot and not your 3 spell slots. Each spell will do something different, and every class has 3 unique spells. After you select a character, you must defeat the other three characters. After you defeat an enemy, the new enemy attack power will reset back to 0. Enemy attack power constantly grows. However, your character attack power stays the same. You have to find the right time, after building enough attack power, to start using your attack. Every class has atleast one spell that increases attack power. Using attack is essential to winning the game. Select your character to begin! </p> -->
-
-		<div id="gameArea"> </div>
-  </div>
+<!-- END OF FIRST COLUMN CONTAINER ROW  -->
 </div>
-
-
-
-
-
-<!-- END FIRST ROW SECOND COLUMN  -->
 </div>
 
 </div>
-
-
-
-
-
-
-
-<!-- FIRST ROW SECOND COLUMN  -->
-<div class="row">
-	<div class="col-sm-12">	
-
-
-<div class="panel panel-default">
-	  <div class="panel-heading">
-		<h1 class="panel-title">Stats</h1> 
-	 
-	  </div>
-
-  <div class="panel-body">
-   		<h1 id="charHP"> Your Character HP:  </h1>
-   		<h1 id="charAP"> Your Character Attack Power:  </h1>
-   		<h1 id="charA"> Your Character Attack:  </h1>
-   		<br>
-   		<h1 id="enemyHP"> Enemy HP:  </h1>
-   		<h1 id="enemyAP"> Enemy Attack Power:  </h1>
-   		<h1 id="enemyA"> Enemy Attack:  </h1>
-
-  </div>
-
-
-</div>
-
-
-
-
-
-	</div>
-
-</div>
-
-
-
-
-
-
-
-<!-- FIRST ROW SECOND COLUMN  -->
-<div class="row">
-	<div class="col-sm-12">	
-
-
-<div class="panel panel-default">
-	  <div class="panel-heading">
-		<h1 class="panel-title">Spell Info</h1> 
-	 
-	  </div>
-
-  <div class="panel-body">
-   		<h1 id="spellInfo1"> </h1>
-   		<br>
-   		<h1 id="spellInfo2"> </h1>
-   		<br>
-   		<h1 id="spellInfo3"></h1>
-   		<br>
-
-  </div>
-
-
-</div>
-
-
-
-
-
-	</div>
-
-</div>
-
-<!-- END OF MAIN COLUMN TO THE RIGHT  -->
-</div>
-
-
-												
-												
-												</div>
 
   <!--- Javascript-->
   <script type="text/javascript" src="assets/javascript/game.js"></script>
