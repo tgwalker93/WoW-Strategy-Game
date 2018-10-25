@@ -1,3 +1,25 @@
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  color: #FFF;
+}
+.btn:active:focus {
+    color: #FFF;
+}
+.btn:hover {
+color: #000;
+}
+#howToPlayBtn {
+      position: fixed;
+      bottom: -4px;
+      right: 10px;
+      background-color: #238f4e;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+}
+
 #gameTextContainer {
   padding-left: 20%;
 }

@@ -6,10 +6,10 @@ $(document).ready(function() {
 var charList = ["warrior", "mage", "hunter", "rogue"];
 
 var charMaxHealthList = {
-	warrior: 130,
+	warrior: 100,
 	mage:100,
-	hunter:120,
-	rogue:110
+	hunter:100,
+	rogue:100
 
 }
 var charChosen;
@@ -24,10 +24,10 @@ var spell = "attack";
 //OBJECT VARRIABLES
 
 //obj health
-var warriorHealth = 130; 
+var warriorHealth = 100; 
 var mageHealth = 100;
-var hunterHealth = 120;
-var rogueHealth = 110;
+var hunterHealth = 100;
+var rogueHealth = 100;
 
 //obj attack power
 var mageAttackPower = 1;
@@ -47,7 +47,7 @@ var warriorMainAttack = 0;
 	var modal = document.getElementById('modal');
 
 	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
+	var btn = document.getElementById("howToPlayBtn");
 
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
@@ -570,7 +570,9 @@ function updateStats() {
 //UPDATE STATS!!! 
 if (typeof charChosen !== "undefined") {
 	var charClass = eval(charChosen + "Class");
-
+	if (charClass.health >= 0 && charClass.attackPower >= 0) {
+	$("#" + charChosen + "HPNum").html(charClass.health);
+	}
 	if (charClass.health < 0) {
     charClass.health = 0;
   }
@@ -598,7 +600,7 @@ if (typeof charChosen !== "undefined") {
 }
 
 
-
+//Update Attack power!
 if (typeof enemyChosen !== "undefined" ){
 	var enemyClass = eval(enemyChosen + "Class");
 	$("#" + charChosen + "AttackPower").html("Attack Power: " + charClass.attackPower);
@@ -863,16 +865,16 @@ document.onkeyup = function(event) {
 		//OBJECT VARRIABLES
 
 		//obj health
-		warriorHealth = 130; 
+		warriorHealth = 100;
 		mageHealth = 100;
-		hunterHealth = 120;
-		rogueHealth = 110;
+		hunterHealth = 100;
+		rogueHealth = 100;
 
 		//obj attack power
-		mageAttackPower = 0;
-		hunterAttackPower = 0;
-		rogueAttackPower = 0;
-		warriorAttackPower = 0; 
+		mageAttackPower = 1;
+		hunterAttackPower = 1;
+		rogueAttackPower = 1;
+		warriorAttackPower = 1; 
 
 		//obj main attack
 		mageMainAttack = 1;
@@ -884,17 +886,17 @@ document.onkeyup = function(event) {
 
 
 
-		warriorClass.health = 130;
+		warriorClass.health = 100;
 		mageClass.health = 100;
-		hunterClass.health = 120;
-		rogueClass.health = 110;
+		hunterClass.health = 100;
+		rogueClass.health = 100;
 
 
 
-		warriorClass.attackPower = 0;
-		mageClass.attackPower = 0;
-		hunterClass.attackPower = 0;
-		rogueClass.attackPower = 0;
+		warriorClass.attackPower = 1;
+		mageClass.attackPower = 1;
+		hunterClass.attackPower = 1;
+		rogueClass.attackPower = 1;
 
 
 		warriorClass.mainAttack = 1;
@@ -958,15 +960,20 @@ document.onkeyup = function(event) {
 			// max damage is essentially quarter of max life
 			// var damage = Math.floor(Math.random()*total);
 			// damage = 100;
+
 			var newValue = value - damage;
 			// calculate the percentage of the total width
-			var barWidth = (newValue / total) * 100;
+			//var barWidth = (newValue / total) * 100;
+			var charClass = eval(charName + "Class");
+			var barWidth = charClass.health;
 			var hitWidth = (damage / value) * 100 + "%";
 
 		console.log(charName);
 			console.log("value: " + value);
 			console.log("damage: " + damage);
 			console.log("total: " + total);
+			console.log("barwidth: " + barWidth);
+			console.log("hitwidth: " + hitWidth);
 			// show hit bar and set the width
 			hit.css('width', hitWidth);
 			hBar.data('value', newValue);
@@ -999,6 +1006,7 @@ document.onkeyup = function(event) {
 		enemyMaxHealth = charMaxHealthList[enemyChosen];
 		$("#" + charChosen + "HPNum").html(charMaxHealth);
 		$("#" + enemyChosen + "HPNum").html(enemyMaxHealth);
+		$(".attackPower").html("Attack Power: 1");
 		var hBar = $('.health-bar'),
 			bar = hBar.find('.bar'),
 			hit = hBar.find('.hit');
