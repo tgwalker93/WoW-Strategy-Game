@@ -157,12 +157,12 @@ var mageClass = {
 
 	//Spell Info
 	attack1SpellInfo: "You attack your enemy for 20 and increase your attack power by 5",
-	attack2SpellInfo: "Blast all enemies for 20 damage but you lose 5 health.",
+	attack2SpellInfo: "Blast all enemies for 10 damage but you lose 5 health.",
 	attack3SpellInfo: "Increase your attack power by 10 and health by 10.",
 
 	attack1: function(enemyChar) {
 	var spellName = "Frostbolt";
-	$("#gameText").text("You attack your enemy for 20 and increase your attack power by 5");
+	$("#gameText").text("You attack your enemy for 20 and increase your attack power by 20");
 	var enemyCharObj = eval(enemyChar + "Class");
 	var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 	enemyCharObj.health -= 20;
@@ -172,9 +172,9 @@ var mageClass = {
 	},
 	attack2: function(enemyChar) {
 	var spellName = "Fire Nova";
-		hunterClass.health -= 20;
-		warriorClass.health -= 20;
-		rogueClass.health -= 20;
+		hunterClass.health -= 10;
+		warriorClass.health -= 10;
+		rogueClass.health -= 10;
 		mageClass.health -= 5;
 
 
@@ -185,16 +185,22 @@ var mageClass = {
 
 
 		//Health bars!!! 
-		$(hunterHP).html("Hunter: " + hunterClass.health);
-		$(mageHP).html("Mage: " + mageClass.health);
-		$(rogueHP).html("Rogue: " + rogueClass.health);
-		$(warriorHP).html("Warrior: " + warriorClass.health);
+
+		$("#hunterHPNum").html(hunterClass.health);
+		$("#mageHPNum").html(mageClass.health);
+		$("#rogueHPNum").html(rogueClass.health);
+		$("#warriorHPNum").html(warriorClass.health);
+		decreaseHealthBar(20, "hunter");
+		decreaseHealthBar(5, "mage");
+		decreaseHealthBar(20, "rogue");
+		decreaseHealthBar(20, "warrior");
+
 
 
 
 
 		if(gameActive===true){
-		$("#gameText").html("You cleaved 20 damage to all enemies, but you lost 5 health!");
+		$("#gameText").html("You cleaved 10 damage to all enemies, but you lost 5 health!");
 
 		}
 
@@ -229,33 +235,32 @@ var warriorClass = {
 
 
 	//Spell Info
-	attack1SpellInfo: "Deal 10 damage to all enemies. ",
+	attack1SpellInfo: "Deal 5 damage to all enemies. ",
 	attack2SpellInfo: "Attack your enemy for 30 but you lose 10 health. ",
-	attack3SpellInfo: "You attack your enemy for 10 and you gain 5 attack power. ",
+	attack3SpellInfo: "You attack your enemy for 10 and you gain 10 attack power. ",
 
 
 
 	attack1: function(enemyChar) {
 		var spellName = "Cleave";
-		hunterClass.health -= 10;
-		mageClass.health -= 10;
-		rogueClass.health -= 10;
+		hunterClass.health -= 5;
+		mageClass.health -= 5;
+		rogueClass.health -= 5;
 
 
-		var hunterHP = "#hunterHP";
-		var mageHP = "#mageHP";
-		var rogueHP = "#rogueHP";
 
 
 
 		//Health bars!!! 
-		$(hunterHP).html("Hunter: " + hunterClass.health);
-		$(mageHP).html("Mage: " + mageClass.health);
-		$(rogueHP).html("Rogue: " + rogueClass.health);
-
+		$("#hunterHPNum").html(hunterClass.health);
+		$("#mageHPNum").html(mageClass.health);
+		$("#rogueHPNum").html(rogueClass.health);
+		decreaseHealthBar(5, "hunter");
+		decreaseHealthBar(5, "mage");
+		decreaseHealthBar(5, "rogue");
 
 		if(gameActive===true){
-		$("#gameText").html("You cleaved 10 damage to all enemies!");
+		$("#gameText").html("You cleaved 5 damage to all enemies!");
 
 		}
 	},
@@ -286,11 +291,11 @@ var warriorClass = {
 		var capitalizeEnemy = enemyChar.substr(0,1).toUpperCase()+enemyChar.substr(1);
 
 		if(gameActive===true){
-		$("#gameText").html("You attack your enemy for 10 and you gained 5 attack power!");
+		$("#gameText").html("You attack your enemy for 10 and you gained 10 attack power!");
 
 		}	
 		enemyCharObj.health -= 10;
-		warriorClass.attackPower += 5;
+		warriorClass.attackPower += 10;
 
 
 
@@ -647,8 +652,8 @@ function attack() {
 	//enemy, increasing attack power
 	var enemyHP = "#" + enemyChosen + "HP";
 	var enemyClass = eval(enemyChosen + "Class");
-	enemyClass.attackPower = 5;
-	enemyClass.mainAttack+=5;
+	enemyClass.attackPower = 2;
+	enemyClass.mainAttack+=2;
 
 
 
@@ -751,7 +756,7 @@ function attack() {
 		attackReady=false;
 		var defeatedEnemy = enemyChosen;
 		enemyMaxHealth = charMaxHealthList[defeatedEnemy];
-		$("#" + enemyChosen + "HPNum").html(enemyMaxHealth);
+		$("#" + enemyChosen + "HPNum").html(0);
 		var capitalizeChar = defeatedEnemy.substr(0,1).toUpperCase()+defeatedEnemy.substr(1);
 		$("div").off("click");
 		$("#gameText").text("You defeated the " + defeatedEnemy + " class. Please choose another enemy to fight!");
@@ -849,6 +854,11 @@ document.onkeyup = function(event) {
 		gameActive = true;
 
 		resetHealthBars();
+
+		$("#mageHPNum").html(100);
+		$("#warriorHPNum").html(100);
+		$("#hunterHPNum").html(100);
+		$("#rogueHPNum").html(100);
 
 		// Reset variables here
 		charList = ["warrior", "mage", "hunter", "rogue"];
@@ -957,9 +967,6 @@ document.onkeyup = function(event) {
 			if (value <= 0) {
 				return;
 			}
-			// max damage is essentially quarter of max life
-			// var damage = Math.floor(Math.random()*total);
-			// damage = 100;
 
 			var newValue = value - damage;
 			// calculate the percentage of the total width
@@ -968,12 +975,7 @@ document.onkeyup = function(event) {
 			var barWidth = charClass.health;
 			var hitWidth = (damage / value) * 100 + "%";
 
-		console.log(charName);
-			console.log("value: " + value);
-			console.log("damage: " + damage);
-			console.log("total: " + total);
-			console.log("barwidth: " + barWidth);
-			console.log("hitwidth: " + hitWidth);
+
 			// show hit bar and set the width
 			hit.css('width', hitWidth);
 			hBar.data('value', newValue);
@@ -982,13 +984,7 @@ document.onkeyup = function(event) {
 				hit.css({ 'width': '0' });
 				bar.css('width', barWidth + "%");
 			}, 500);
-			//bar.css('width', total - value);
 
-			//log(value, damage, hitWidth);
-
-			// if( value < 0){
-			// log("DEAD");
-			// }
 	
 
 		reset.on('click', function (e) {

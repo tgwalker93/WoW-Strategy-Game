@@ -21,7 +21,7 @@ color: #000;
 }
 
 #gameTextContainer {
-  padding-left: 20%;
+    text-align: center;
 }
 #mainRow {
   margin-right: 200px;
@@ -190,7 +190,7 @@ visibility: hidden;
 
 html {
   height: 100%;
-  zoom: 52%;
+  zoom: 50%;
 }
 
 #title {
@@ -238,8 +238,7 @@ button {
 
     font-size: 50px;
     text-align: center;
-    color: white;
-    background-color: black;
+    color: black;
     padding: 10px;
     margin-bottom: 50px;
     display: inline-block;
@@ -339,7 +338,7 @@ button {
 .panel-title {
 
     text-align: center;
-    font-size: 160%;
+    font-size: 300%;
     background-color: #238f4e;
 
 }
