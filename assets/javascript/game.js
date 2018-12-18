@@ -730,6 +730,7 @@ function attack() {
 		decreaseHealthBar(charClass.mainAttack, enemyChosen);
 	}
 	if (gameActive == true) {
+		console.log("Decreasing Enemy Health bar!");
 		decreaseHealthBar(enemyClass.mainAttack, charChosen);
 	}
 
@@ -964,18 +965,17 @@ document.onkeyup = function(event) {
 				value = hBar.data('value');
 
 
-			if (value <= 0) {
-				return;
-			}
-
 			var newValue = value - damage;
 			// calculate the percentage of the total width
 			//var barWidth = (newValue / total) * 100;
 			var charClass = eval(charName + "Class");
 			var barWidth = charClass.health;
 			var hitWidth = (damage / value) * 100 + "%";
-
-
+			console.log("------------------------------");
+			console.log("Char Name: " + charName);
+			console.log("Damage: " + damage);
+			console.log("Value: " + value);
+			console.log("Char Class Health: " + charClass.health);
 			// show hit bar and set the width
 			hit.css('width', hitWidth);
 			hBar.data('value', newValue);
